@@ -1,0 +1,1025 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CysterCare Product Page</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --font:"Inter Tight",system-ui,sans-serif;
+  --plum:#24101F;
+  --plum-2:#331828;
+  --magenta:#E03192;
+  --magenta-deep:#B71F65;
+  --pink:#FF9FD0;
+  --blush:#FFEDF7;
+  --tint:#FFF6FA;
+  --white:#FFFFFF;
+  --orange:#F0813F;
+  --ink:#1A1418;
+  --muted:#6F6670;
+  --line:rgba(26,20,24,.10);
+  --rule:rgba(26,20,24,.08);
+  --guide:rgba(224,49,146,.07);
+  --line-d:rgba(255,255,255,.13);
+  --r:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--white);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font-family:var(--font)}
+h1,h2,h3,h4,h5{font-weight:400;letter-spacing:-.025em;line-height:1.04}
+em{font-style:normal}
+.serif{font-family:inherit;font-weight:inherit;letter-spacing:inherit}
+.acc{color:var(--magenta)}
+.dark .acc{color:var(--pink)}
+.wrap{max-width:1320px;margin:0 auto;padding:0 32px;position:relative}
+.sec{padding:120px 0;position:relative}
+.h-xl{font-size:clamp(44px,6vw,88px)}
+.h-l{font-size:clamp(36px,4.6vw,64px)}
+.lead{font-size:18px;color:var(--muted);max-width:520px}
+.dark{background:var(--plum);color:#fff}
+.dark .lead{color:rgba(255,255,255,.66)}
+.row-head{display:flex;justify-content:space-between;align-items:end;gap:40px;flex-wrap:wrap;margin-bottom:56px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:999px;padding:17px 28px;font-weight:500;font-size:16px;border:0;cursor:pointer;transition:.25s;white-space:nowrap}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-dark:hover{background:var(--magenta)}
+.btn-mag{background:var(--magenta);color:#fff}
+.btn-mag:hover{background:var(--magenta-deep)}
+.btn-line{border:1px solid currentColor;background:transparent}
+.btn-white{background:#fff;color:var(--ink)}
+.arrow{display:inline-block;transition:transform .25s}
+.btn:hover .arrow{transform:translateX(4px)}
+
+/* ---------- PACKAGING GRID LANGUAGE ---------- */
+/* faint column guides behind light sections */
+.guides::before{display:none;content:"";position:absolute;top:0;bottom:0;left:50%;transform:translateX(-50%);width:min(1256px,calc(100% - 64px));pointer-events:none;
+  background:linear-gradient(to right,var(--guide) 1px,transparent 1px) 0 0/25% 100%;border-right:1px solid var(--guide);z-index:0}
+.guides > *{position:relative;z-index:1}
+.dark.guides::before{background:linear-gradient(to right,rgba(255,255,255,.05) 1px,transparent 1px) 0 0/25% 100%;border-right-color:rgba(255,255,255,.05)}
+/* ruled section label, like the label strip on the bottle */
+.label{display:inline-flex;align-items:center;gap:8px;font-size:14px;margin-bottom:22px;background:var(--blush);color:var(--magenta-deep);border-radius:999px;padding:7px 16px 7px 12px;font-weight:500}
+.label span{white-space:nowrap}
+.label span:first-child{font-size:16px}
+.label .sp,.label span:nth-child(4){display:none}
+
+.label i{width:5px;height:5px;border-radius:50%;background:var(--magenta);display:inline-block}
+.dark .label{background:rgba(255,159,208,.14);color:var(--pink)}
+.dark .label span,.dark .label .sp{border-color:var(--line-d)}
+.dark .label span:first-child{color:var(--pink)}
+.dark .label span:last-child{color:rgba(255,255,255,.5)}
+.dark .label i{background:var(--pink)}
+/* bordered cell grids */
+.cells{display:grid;gap:8px}
+.cells > *{border:0!important;background:var(--tint);border-radius:14px}
+
+/* announce + nav */
+.announce{background:var(--magenta);color:#fff;text-align:center;font-size:13px;padding:9px 16px;font-weight:500}
+.navbar{position:sticky;top:12px;z-index:60;margin:12px 16px 0}
+.navbar .in{max-width:1320px;margin:0 auto;background:rgba(36,16,31,.94);backdrop-filter:blur(14px);color:#fff;border-radius:16px;height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 22px}
+.navbar img{height:24px;filter:brightness(0) invert(1)}
+.navbar nav{display:flex;gap:32px;font-size:14px}
+.navbar nav a{opacity:.8}.navbar nav a:hover{opacity:1}
+.navbar .r{display:flex;gap:18px;font-size:14px;align-items:center}
+.cartc{background:#fff;color:var(--ink);border-radius:999px;padding:6px 14px;font-weight:500}
+
+/* ============ HERO ============ */
+.hero{padding:30px 0 100px}
+.hero-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:56px;align-items:start}
+.mosaic{display:grid;grid-template-columns:1fr 1fr;gap:10px;position:sticky;top:96px}
+.mosaic .main{grid-column:span 2;border-radius:var(--r);overflow:hidden;aspect-ratio:1.18;background:var(--blush);position:relative}
+.mosaic .main img{width:100%;height:100%;object-fit:cover;transition:opacity .3s}
+.mosaic .badge{position:absolute;top:16px;left:16px;display:flex;gap:8px;flex-wrap:wrap}
+.mosaic .badge span{background:#fff;border-radius:999px;padding:7px 13px;font-size:12px;font-weight:500}
+.mosaic .badge span:first-child{background:var(--plum);color:#fff}
+.mosaic .arrows{position:absolute;right:16px;bottom:16px;display:flex;gap:8px}
+.mosaic .arrows button{width:42px;height:42px;border-radius:50%;border:0;background:rgba(255,255,255,.92);cursor:pointer;font-size:16px}
+.tile{border-radius:var(--r);overflow:hidden;aspect-ratio:1;position:relative;cursor:pointer}
+.tile img{width:100%;height:100%;object-fit:cover}
+.tile.txt{background:var(--plum);color:#fff;padding:24px;display:flex;flex-direction:column;justify-content:space-between;cursor:default}
+.tile.txt b{font-size:clamp(52px,6vw,88px);font-weight:300;letter-spacing:-.05em;line-height:.9}
+.tile.txt b em{font-family:var(--font);font-weight:300;color:var(--pink)}
+.tile.txt p{font-size:14px;opacity:.75}
+.tile.pink{background:var(--blush);color:var(--ink)}
+.tile.pink b em{color:var(--magenta)}
+.dots{grid-column:span 2;display:flex;gap:6px;justify-content:center;padding-top:6px}
+.dots i{width:6px;height:6px;border-radius:9px;background:#e3d6dd;transition:.25s;cursor:pointer}
+.dots i.on{width:22px;background:var(--ink)}
+
+.buy .top{display:flex;justify-content:space-between;align-items:center;font-size:13.5px;color:var(--muted);margin-bottom:16px}
+.stars{color:var(--orange);letter-spacing:1px}
+.buy h1{font-size:clamp(46px,4.6vw,66px);margin-bottom:6px}
+.buy .sub{font-size:20px;color:var(--muted);margin-bottom:18px;letter-spacing:-.01em}
+.buy .desc{font-size:16px;color:#4a424a;margin-bottom:22px;max-width:560px}
+.benefits{grid-template-columns:1fr 1fr;margin-bottom:22px;border-radius:14px}
+.benefits div{display:grid;grid-template-columns:44px 1fr;align-items:center;font-size:14px}
+.benefits div:nth-child(2n){border-right:0}
+.benefits div:nth-last-child(-n+2){border-bottom:0}
+.benefits b{display:grid;place-items:center;font-size:20px;font-weight:400;padding:12px 0 12px 8px}
+.benefits span{padding:13px 14px}
+
+.bundle-h{display:flex;justify-content:space-between;font-size:14px;margin-bottom:10px}
+.bundle-h b{font-weight:600}.bundle-h span{color:var(--muted);font-size:13px}
+.bun{grid-template-columns:repeat(4,1fr);margin-bottom:24px;border-radius:14px}
+.bun div{padding:14px 12px;font-size:12.5px;line-height:1.35;border-bottom:0}
+.bun div:last-child{border-right:0}
+.bun b{display:block;font-size:14px;font-weight:600;margin-bottom:2px}
+.bun small{color:var(--muted)}
+.bun .val{display:block;margin-top:8px;color:var(--magenta-deep);font-weight:600;font-size:11.5px}
+
+.plan-h{display:flex;justify-content:space-between;align-items:end;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.plan-h b{font-size:15px;font-weight:600}
+.plan-h span{font-size:13px;color:var(--muted)}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.plan{border:1px solid var(--line);border-radius:16px;background:#fff;padding:18px 12px 14px;cursor:pointer;text-align:center;position:relative;transition:.2s}
+.plan:hover{border-color:var(--magenta)}
+.plan.on{border-color:var(--ink);background:var(--ink);color:#fff}
+.plan .chip{position:absolute;top:-10px;left:50%;transform:translateX(-50%);font-size:10.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;background:var(--magenta);color:#fff;border-radius:999px;padding:3px 10px;white-space:nowrap}
+.plan .chip.b{background:var(--orange)}
+.plan small{font-size:12px;opacity:.6;display:block}
+.plan h5{font-size:22px;font-weight:500;margin:2px 0 8px}
+.plan .p{font-size:20px;font-weight:600}
+.plan s{font-size:12px;opacity:.5;margin-left:4px}
+.plan .save{margin-top:10px;font-size:11.5px;border-radius:999px;padding:5px 8px;background:var(--blush);color:var(--magenta-deep);font-weight:600}
+.plan.on .save{background:rgba(255,255,255,.12);color:var(--pink)}
+.perks{font-size:13.5px;color:#4a424a;background:var(--tint);border-radius:12px;padding:12px 16px;margin-bottom:16px;min-height:46px;display:flex;align-items:center;gap:10px}
+.perks b{color:var(--magenta-deep);font-weight:600}
+.cta .btn{width:100%;padding:19px;font-size:17px}
+.assure{grid-template-columns:repeat(4,1fr);margin-top:16px;text-align:center;font-size:11.5px;color:var(--muted);border-radius:14px}
+.assure div{padding:12px 6px;border-bottom:0}
+.assure div:last-child{border-right:0}
+.assure b{display:block;color:var(--ink);font-size:13px;font-weight:600}
+.acc-list{margin-top:24px;border-top:1px solid var(--line)}
+.acc-list details{border-bottom:1px solid var(--line)}
+.acc-list summary{list-style:none;cursor:pointer;padding:17px 0;font-weight:500;display:flex;justify-content:space-between}
+.acc-list summary::after{content:"+";font-size:20px;font-weight:300;line-height:1}
+.acc-list details[open] summary::after{content:"−"}
+.acc-list summary::-webkit-details-marker{display:none}
+.acc-list p{padding:0 0 18px;color:#4a424a;font-size:14.5px}
+
+/* MARQUEE */
+.marq{background:var(--plum);color:#fff;overflow:hidden;padding:30px 0}
+.marq .t{display:inline-flex;white-space:nowrap;gap:40px;animation:mq 42s linear infinite;font-size:clamp(32px,4.2vw,56px);font-weight:300;letter-spacing:-.03em;align-items:center}
+.marq .t em{font-family:var(--font);font-weight:300;color:var(--pink)}
+.marq .t i{font-style:normal;font-size:.55em}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ECOSYSTEM STACK */
+.eco-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:80px}
+.eco-left{position:sticky;top:120px;align-self:start}
+.eco-left .h-l{margin:0 0 22px}
+.eco-left .count{margin-top:36px;grid-template-columns:repeat(3,1fr);border-radius:14px}
+.eco-left .count div{font-size:13px;color:var(--muted);padding:18px}
+.eco-left .count div:last-child{border-right:0}
+.eco-left .count b{display:block;font-size:40px;font-weight:300;color:var(--ink);letter-spacing:-.04em;line-height:1;margin-bottom:6px}
+.stack{display:grid;gap:22px}
+.card-s{position:sticky;border-radius:24px;padding:38px;min-height:420px;display:grid;grid-template-columns:1fr 1fr;gap:28px;overflow:hidden;box-shadow:0 -20px 40px -30px rgba(0,0,0,.35)}
+.card-s:nth-child(1){top:110px;background:var(--blush)}
+.card-s:nth-child(2){top:130px;background:var(--plum);color:#fff}
+.card-s:nth-child(3){top:150px;background:var(--magenta);color:#fff}
+.card-s:nth-child(4){top:170px;background:var(--tint)}
+.card-s .n{font-size:15px;opacity:.8;display:block}
+.card-s h3{font-size:clamp(30px,2.7vw,40px);margin:18px 0 14px}
+.card-s p{font-size:15px;opacity:.82}
+.card-s .l{display:flex;flex-direction:column;justify-content:space-between}
+.card-s .go{font-weight:500;font-size:15px;border-bottom:1px solid currentColor;align-self:flex-start;padding-bottom:2px}
+.card-s .vis{border-radius:16px;overflow:hidden}
+.card-s .vis img{width:100%;height:100%;object-fit:cover}
+.slot{background:rgba(255,255,255,.06);border-radius:16px;display:flex;flex-direction:column;padding:6px}
+.slot .d{font-size:13px;opacity:.7;padding:12px 12px 8px}
+.slot .times{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:0 6px}
+.slot .times span{background:rgba(255,255,255,.08);border-radius:12px;display:grid;place-items:center;padding:16px;font-size:14px}
+
+.slot .times span.on{background:var(--pink);color:var(--plum);font-weight:600}
+.slot .f{font-size:12.5px;opacity:.7;padding:12px}
+.wa{display:flex;flex-direction:column;gap:8px;justify-content:center}
+.wa div{background:#fff;color:var(--ink);border-radius:14px 14px 14px 4px;padding:10px 14px;font-size:13.5px;max-width:90%}
+.wa div.me{align-self:flex-end;background:var(--plum);color:#fff;border-color:var(--plum);border-radius:14px 14px 4px 14px}
+.wa small{display:block;font-size:11px;color:var(--magenta-deep);font-weight:600}
+
+/* ROOT CAUSES */
+.hscroll{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 32px 10px max(32px,calc((100vw - 1320px)/2 + 32px));scrollbar-width:none}
+.hscroll::-webkit-scrollbar{display:none}
+.cause{flex:0 0 350px;scroll-snap-align:start;background:#fff;color:var(--ink);border-radius:20px;display:flex;flex-direction:column;min-height:430px;overflow:hidden}
+.cause .hd{display:flex;align-items:center;justify-content:space-between;padding:22px 22px 0;font-size:13px}
+.cause .hd .em{font-size:34px;line-height:1}
+
+.cause .hd span:last-child{color:var(--magenta-deep);background:var(--blush);border-radius:999px;padding:5px 12px}
+.cause .bd{padding:24px 22px;flex:1;display:flex;flex-direction:column}
+.cause h4{font-size:30px;margin-bottom:14px}
+.cause p{font-size:14.5px;color:#4a424a}
+.cause .helps{padding:0 22px 22px}
+.cause .helps small{font-size:13px;color:var(--muted)}
+.cause .helps div{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.cause .helps span{background:var(--blush);color:var(--magenta-deep);border-radius:999px;padding:5px 12px;font-size:12.5px;font-weight:500}
+.hs-ctrl{display:flex;gap:8px}
+.hs-ctrl button{width:48px;height:48px;border-radius:50%;border:1px solid var(--line-d);background:transparent;color:#fff;cursor:pointer;font-size:18px;transition:.2s}
+.hs-ctrl button:hover{background:#fff;color:var(--plum)}
+
+/* APP */
+.app-grid{display:grid;grid-template-columns:1fr 400px 1fr;gap:40px;align-items:center}
+.app-head{max-width:820px}
+.tabs{display:grid;gap:10px}
+.tab{text-align:left;background:#fff;border:0;border-radius:16px;padding:20px 22px;cursor:pointer;transition:.25s;color:var(--ink)}
+
+.tab small{font-size:22px;line-height:1}
+.tab h5{font-size:21px;font-weight:500;margin:4px 0 0}
+.tab p{font-size:14px;color:var(--muted);max-height:0;overflow:hidden;transition:max-height .35s,margin .35s}
+.tab.on{background:var(--plum);color:#fff}
+.tab.on small{color:var(--pink)}
+.tab.on p{color:rgba(255,255,255,.7);max-height:120px;margin-top:8px}
+.phone{width:100%;max-width:330px;margin:0 auto;background:#120810;border-radius:50px;padding:11px;box-shadow:0 50px 90px -30px rgba(36,16,31,.5)}
+.scr{background:#fff;border-radius:40px;height:650px;overflow:hidden;position:relative}
+.scr .notch{width:100px;height:28px;background:#120810;border-radius:999px;margin:10px auto 0}
+.view{position:absolute;inset:48px 0 0;padding:6px 18px 18px;opacity:0;transform:translateY(12px);transition:.4s;pointer-events:none;display:flex;flex-direction:column;gap:10px;font-size:12.5px}
+.view.on{opacity:1;transform:none;pointer-events:auto}
+.v-h{display:flex;justify-content:space-between;align-items:center;padding:6px 0 4px}
+.v-h b{font-size:20px;font-weight:500;letter-spacing:-.02em}
+.v-h span{font-size:11px;color:var(--muted)}
+.av{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--magenta),var(--orange));color:#fff;display:grid;place-items:center;font-family:var(--font);font-weight:300;font-size:18px}
+.bub{max-width:85%;padding:10px 13px;border-radius:16px;line-height:1.45}
+.bub.me{align-self:flex-end;background:var(--plum);color:#fff;border-bottom-right-radius:4px}
+.bub.ai{background:var(--tint);border-bottom-left-radius:4px}
+.bub ul{margin:6px 0 0 16px}
+.inp{margin-top:auto;border:1px solid var(--line);border-radius:999px;padding:11px 14px;color:var(--muted);display:flex;justify-content:space-between}
+.inp b{color:var(--magenta);font-weight:600}
+.meal{border-radius:16px;overflow:hidden;border:1px solid var(--line)}
+.meal .ph{height:150px;background:url("https://happycysters.com/cdn/shop/files/fe3ab5b1f83db75ae2dec4900b318d2e.jpg?width=600") center/cover}
+.meal .bd{padding:12px 14px}
+.meal .bd b{font-size:14px;font-weight:600}
+.macros{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.macros div{padding:10px;text-align:center;background:var(--tint);border-radius:12px}
+.macros div:last-child{border-right:0}
+.macros b{display:block;font-size:18px;font-weight:500}
+.macros small{font-size:10.5px;color:var(--muted)}
+.bar{height:5px;border-radius:9px;background:#f1e6ec;overflow:hidden;margin-top:6px}
+.bar i{display:block;height:100%;background:var(--magenta)}
+.tip{background:var(--blush);border-radius:14px;padding:12px 14px}
+.tip b{color:var(--magenta-deep)}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;text-align:center;font-size:11px}
+.cal span{aspect-ratio:1;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line)}
+.cal .p{background:var(--magenta);color:#fff;border-color:var(--magenta)}
+.cal .f{background:var(--blush);border-color:transparent;color:var(--magenta-deep)}
+.cal .t{background:var(--plum);color:#fff;border-color:var(--plum)}
+.cal .hd{border:0;color:var(--muted);aspect-ratio:auto}
+.ring{display:flex;gap:14px;align-items:center;border:1px solid var(--line);border-radius:16px;padding:14px}
+.ring .c{width:68px;height:68px;border-radius:50%;background:conic-gradient(var(--magenta) 0 62%,#f1e6ec 0);display:grid;place-items:center;flex:none}
+.ring .c span{width:52px;height:52px;border-radius:50%;background:#fff;display:grid;place-items:center;font-weight:600;font-size:14px}
+.sym{display:flex;flex-wrap:wrap;gap:6px}
+.sym span{border-radius:999px;padding:6px 11px;border:1px solid var(--line)}
+.sym span.on{background:var(--plum);color:#fff;border-color:var(--plum)}
+.rem{border:1px solid var(--line);border-radius:16px;padding:12px 14px;display:flex;gap:12px;align-items:center}
+.rem .ic{width:38px;height:38px;border-radius:12px;background:var(--blush);display:grid;place-items:center;font-size:17px;flex:none}
+.rem b{font-size:13.5px;font-weight:600;display:block}
+.rem small{color:var(--muted)}
+.rem .ok{margin-left:auto;width:24px;height:24px;border-radius:50%;background:var(--magenta);color:#fff;display:grid;place-items:center;font-size:11px}
+.rem .no{margin-left:auto;width:24px;height:24px;border-radius:50%;border:1.5px solid #d4c8cf}
+.streak{background:var(--plum);color:#fff;border-radius:18px;padding:18px;display:flex;justify-content:space-between;align-items:center}
+.streak b{font-size:40px;font-weight:300;letter-spacing:-.04em;line-height:1}
+.streak em{font-family:var(--font);font-weight:300;color:var(--pink);font-size:18px}
+.stores{display:flex;gap:10px;margin-top:56px;flex-wrap:wrap;justify-content:center}
+.store{display:flex;align-items:center;gap:12px;background:var(--ink);color:#fff;border-radius:14px;padding:11px 20px;font-size:11.5px;line-height:1.15}
+.store b{display:block;font-size:17px;font-weight:500}
+.store svg{width:22px;height:22px;fill:#fff}
+
+/* INGREDIENTS: full-image bento */
+.ratio-band{display:grid;grid-template-columns:auto 1fr;gap:70px;align-items:end;margin-bottom:56px}
+.ratio-band .num{font-size:clamp(120px,17vw,250px);font-weight:300;letter-spacing:-.07em;line-height:.78}
+.ratio-band .num em{font-family:var(--font);font-weight:300;color:var(--magenta)}
+.ratio-band h3{font-size:clamp(28px,3vw,40px);margin-bottom:14px}
+.ratio-band p{font-size:18px;color:#4a424a;max-width:560px}
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:300px;gap:10px}
+.ing{position:relative;border-radius:var(--r);overflow:hidden;color:#fff;cursor:default;isolation:isolate}
+.ing img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.ing::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(36,16,31,0) 35%,rgba(36,16,31,.85) 100%);transition:.4s}
+.ing:hover img{transform:scale(1.06)}
+.ing:hover::before{background:linear-gradient(180deg,rgba(36,16,31,.25) 0%,rgba(36,16,31,.9) 100%)}
+.ing .tg{position:absolute;top:14px;left:14px;font-size:11.5px;font-weight:500;letter-spacing:.04em;background:rgba(36,16,31,.45);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:5px 11px}
+.ing .bt{position:absolute;left:20px;right:20px;bottom:18px}
+.ing h4{font-size:28px;line-height:1.05}
+.ing p{font-size:13.5px;opacity:.85;max-height:0;overflow:hidden;transition:max-height .45s,margin .45s}
+.ing:hover p{max-height:90px;margin-top:8px}
+.ing.feat{grid-column:span 2;grid-row:span 2}
+.ing.feat h4{font-size:clamp(36px,3.6vw,52px)}
+.ing.feat p{max-height:none;font-size:16px;max-width:440px;margin-top:12px}
+.ing.feat .big{font-size:96px;font-weight:300;letter-spacing:-.06em;line-height:.8;margin-bottom:14px}
+.ing.feat .big em{font-family:var(--font);font-weight:300;color:var(--pink)}
+.ing.feat::before{background:linear-gradient(180deg,rgba(36,16,31,.05) 20%,rgba(36,16,31,.88) 100%)}
+.free-of{grid-template-columns:repeat(6,1fr);margin-top:16px;text-align:center;font-size:14px}
+.free-of span{padding:15px 8px;border-bottom:0}
+.free-of span:last-child{border-right:0}
+
+/* DOCTOR */
+.doc{position:relative;min-height:620px;border-radius:28px;overflow:hidden;margin:0 16px}
+.doc img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.doc::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(36,16,31,0) 30%,rgba(36,16,31,.7))}
+.doc .card{position:absolute;right:36px;top:36px;bottom:36px;width:min(470px,calc(100% - 72px));background:#fff;border-radius:22px;padding:38px;z-index:1;display:flex;flex-direction:column;justify-content:space-between}
+.doc .k{font-size:15px;color:var(--magenta-deep);font-weight:500}
+.doc blockquote{font-size:clamp(25px,2.3vw,32px);letter-spacing:-.02em;line-height:1.18;margin:22px 0}
+.doc blockquote em{color:var(--magenta)}
+.doc .foot{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;padding-top:20px}
+.doc .sig{font-family:var(--font);font-weight:300;font-size:28px;color:var(--magenta);line-height:1}
+
+/* JOURNEY */
+.stops{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.stop{background:rgba(255,255,255,.05);border:0;border-radius:16px;color:rgba(255,255,255,.55);cursor:pointer;display:flex;align-items:center;gap:14px;padding:18px 20px;font-size:15px;text-align:left;transition:.3s;position:relative}
+.stop .e{font-size:26px;line-height:1;width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.07);display:grid;place-items:center;flex:none;transition:.3s}
+
+.stop small{display:block;font-size:11.5px;opacity:.6;text-transform:uppercase;letter-spacing:.08em}
+.stop b{font-weight:500}
+.stop.done{color:rgba(255,255,255,.85)}
+.stop.done .e{background:rgba(255,159,208,.18)}
+.stop.on{background:var(--pink);color:var(--plum)}
+.stop.on .e{background:#fff;transform:scale(1.08)}
+
+.panel{display:grid;grid-template-columns:1.1fr 1fr 1fr;margin-top:12px;gap:8px}
+.jcard{padding:30px;min-height:250px;background:rgba(255,255,255,.05);border-radius:18px}
+
+.jcard small{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.5)}
+.jcard h4{font-size:34px;margin:14px 0 12px}
+.jcard h4 em{color:var(--pink)}
+.jcard p{font-size:15.5px;color:rgba(255,255,255,.75)}
+.jcard ul{list-style:none;display:grid;gap:0;margin-top:14px;font-size:15px;color:rgba(255,255,255,.85)}
+.jcard li{padding:7px 0}
+.jcard li:last-child{border-bottom:0}
+
+.jcard.big{background:var(--pink);color:var(--plum)}
+.jcard.big small{color:rgba(36,16,31,.6)}
+.jcard.big p{color:rgba(36,16,31,.82)}
+.jcard.big h4 em{color:var(--magenta-deep)}
+.note{font-size:12.5px;color:rgba(255,255,255,.45);margin-top:24px}
+
+/* STATS */
+.stats{grid-template-columns:repeat(4,1fr)}
+.stat{padding:30px 26px}
+.stat:last-child{border-right:0}
+.stat b{font-size:clamp(60px,6.5vw,96px);font-weight:300;letter-spacing:-.06em;line-height:.9;display:block}
+.stat b sup{font-size:.35em;font-family:var(--font);font-weight:300;color:var(--magenta);vertical-align:top;margin-left:4px;letter-spacing:0}
+.stat p{margin-top:16px;font-size:15px;color:#4a424a;max-width:240px}
+.ph-tag{display:inline-block;font-size:10.5px;text-transform:uppercase;letter-spacing:.12em;border:1px dashed currentColor;border-radius:999px;padding:3px 9px;opacity:.55;vertical-align:middle}
+
+/* STORIES */
+.stories{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.story{border-radius:22px;overflow:hidden;display:grid;grid-template-columns:.85fr 1fr;min-height:460px;background:var(--tint)}
+.story video{width:100%;height:100%;object-fit:cover;background:var(--plum)}
+.story .bd{display:flex;flex-direction:column;padding:26px;gap:4px}
+.story .who{font-size:13.5px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.story q{display:block;font-size:25px;letter-spacing:-.02em;line-height:1.2;padding:18px 0;quotes:none}
+.story q em{color:var(--magenta)}
+.bfa{font-size:14px;display:grid;gap:10px;margin-bottom:20px}
+.bfa div{display:grid;grid-template-columns:90px 1fr;gap:10px}
+.bfa span{font-size:13px;color:var(--muted)}
+
+.story .mt{margin-top:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.story .mt div{padding:14px;background:#fff;border-radius:14px}
+
+.story .mt b{font-size:22px;font-weight:500;display:block;letter-spacing:-.02em}
+.story .mt small{font-size:11.5px;color:var(--muted)}
+
+/* REVIEWS */
+.rev-wrap{display:grid;grid-template-columns:330px 1fr;gap:50px;align-items:start}
+.score{position:sticky;top:110px;border-radius:var(--r);padding:28px;background:#fff}
+.score b{font-size:100px;font-weight:300;letter-spacing:-.06em;line-height:.85;display:block}
+.score .bars{display:grid;gap:8px;margin:26px 0;font-size:13px}
+.score .bars div{display:grid;grid-template-columns:28px 1fr 40px;align-items:center;gap:10px}
+.score .bars i{height:4px;background:#f1e6ec;border-radius:9px;overflow:hidden}
+.score .bars i::after{content:"";display:block;height:100%;width:var(--w);background:var(--ink)}
+.revs{grid-template-columns:1fr 1fr;gap:12px}
+.revs > *{background:#fff!important}
+.revs .rev:nth-child(2n){border-right:0}
+.revs .rev:nth-last-child(-n+2){border-bottom:0}
+.rev{padding:26px;display:flex;flex-direction:column;gap:12px}
+.rev p{font-size:15.5px}
+.rev .by{margin-top:auto;display:flex;justify-content:space-between;font-size:13px;color:var(--muted)}
+.rev .by b{color:var(--ink);font-weight:500}
+.rev .v{color:#1F9D63}
+
+/* COMPARE */
+.cmp-w{}
+.cmp{width:100%;border-collapse:collapse;font-size:15px}
+.cmp th,.cmp td{padding:18px 20px;text-align:center;border-bottom:1px solid var(--line)}
+.cmp th:last-child,.cmp td:last-child{border-right:0}
+.cmp tbody tr:last-child td{border-bottom:0}
+.cmp th:first-child,.cmp td:first-child{text-align:left}
+.cmp thead th{font-weight:500;font-size:16px;vertical-align:bottom;color:var(--ink)}
+.cmp thead th small{display:block;font-size:12px;color:var(--muted);font-weight:400;margin-top:3px}
+.cmp .us{background:var(--plum);color:#fff;border-color:var(--line-d)}
+.cmp thead .us{border-radius:18px 18px 0 0}
+.cmp tbody tr:last-child .us{border-radius:0 0 18px 18px}
+.cmp thead .us small{color:rgba(255,255,255,.6)}
+.y,.cmp .us.y{color:var(--pink);font-size:18px}
+.n{color:#bdb2b8}
+.cmp td.dk{color:var(--ink)}
+.cmp-note{font-size:13px;color:var(--muted);margin-top:14px}
+
+/* CERTS */
+.certs{grid-template-columns:repeat(4,1fr);margin-top:80px;border-radius:var(--r)}
+.certs div{display:flex;align-items:center;gap:14px;font-size:13px;color:var(--muted);padding:22px 24px;border-bottom:0}
+.certs div:last-child{border-right:0}
+.certs img{width:44px;height:44px;object-fit:contain}
+.certs b{display:block;color:var(--ink);font-weight:600;font-size:14.5px}
+
+/* FAQ */
+.faq{display:grid;grid-template-columns:1fr 1.4fr;gap:80px}
+.faq-list{border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;padding:22px 0;font-size:19px;display:flex;justify-content:space-between;gap:20px;letter-spacing:-.01em}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";width:30px;height:30px;border-radius:50%;background:var(--blush);color:var(--magenta);display:grid;place-items:center;font-size:18px;flex:none;transition:.25s}
+.faq details[open] summary::after{transform:rotate(45deg);background:var(--magenta);color:#fff;border-color:var(--magenta)}
+.faq p{padding:0 50px 22px 0;color:#4a424a}
+.helpbox{margin-top:36px;border-radius:var(--r);overflow:hidden;background:var(--tint)}
+.helpbox div{padding:24px 26px}
+.helpbox div:last-child{padding-top:0}
+.helpbox h4{font-size:26px;margin-bottom:6px}
+.helpbox p{color:#4a424a;font-size:15px}
+
+/* FINAL */
+.final{margin:0 16px;border-radius:28px;padding:110px 40px;text-align:center;position:relative;overflow:hidden}
+.final::before{content:"";position:absolute;width:900px;height:900px;left:50%;top:60%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(224,49,146,.42),transparent 60%)}
+.final > *{position:relative}
+.final .h-xl{max-width:1000px;margin:0 auto 24px}
+.final .lead{margin:0 auto}
+.final .acts{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:32px}
+.final .g{margin:36px auto 0;max-width:760px;grid-template-columns:repeat(4,1fr);font-size:13.5px;color:rgba(255,255,255,.85)}
+.final .g > *{background:rgba(255,255,255,.07)!important}
+.final .g span{padding:14px 8px;border-color:var(--line-d);border-bottom:0}
+.final .g span:last-child{border-right:0}
+.tagline{font-size:13px;letter-spacing:.14em;text-transform:lowercase;color:rgba(255,255,255,.6);margin-bottom:22px}
+.tagline i{color:var(--pink);font-style:normal;margin:0 10px}
+
+footer{background:var(--plum);color:rgba(255,255,255,.65);margin-top:16px;padding:80px 0 120px;font-size:14px}
+footer .g{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.3fr;gap:30px}
+footer .g > div{padding:0}
+footer .g > div:first-child{padding-left:0}
+footer .g > div:last-child{border-right:0;padding-right:0}
+footer h5{color:#fff;font-size:15px;font-weight:500;margin-bottom:14px;letter-spacing:0}
+footer ul{list-style:none;display:grid;gap:8px}
+footer .big{font-size:clamp(60px,11vw,170px);color:#fff;font-weight:300;letter-spacing:-.06em;line-height:.85;margin-top:70px}
+footer .big em{font-family:var(--font);font-weight:300;color:var(--pink)}
+footer input{width:100%;background:transparent;border:1px solid var(--line-d);border-radius:999px;padding:13px 16px;color:#fff;font-family:var(--font);margin-bottom:10px}
+
+/* STICKY BAR */
+.sbar{position:fixed;left:0;right:0;bottom:0;z-index:70;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);box-shadow:0 -10px 30px -20px rgba(0,0,0,.3);transform:translateY(110%);transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.sbar.show{transform:none}
+.sbar .in{max-width:1320px;margin:0 auto;padding:12px 32px;display:flex;align-items:center;gap:16px}
+.sbar img{width:46px;height:46px;border-radius:10px;object-fit:cover}
+.sbar .t{flex:1;min-width:0}
+.sbar .t b{font-weight:500;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sbar .t small{color:var(--muted)}
+.sbar .pr{font-weight:600}
+.sbar .pr s{color:var(--muted);font-weight:400;font-size:13px;margin-left:4px}
+.sbar .btn{padding:14px 26px}
+
+.rv{opacity:0;transform:translateY(26px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media (max-width:1100px){
+  .app-grid{grid-template-columns:1fr 1fr}
+  .app-grid .tabs:last-child{grid-column:span 2}
+  .stops .stop{flex-direction:column;align-items:flex-start;gap:10px}
+}
+@media (max-width:980px){
+  .hero-grid,.eco-grid,.faq,.rev-wrap{grid-template-columns:1fr}
+  .mosaic,.eco-left,.score{position:relative;top:0}
+  .card-s{grid-template-columns:1fr;min-height:0}
+  .card-s .vis{height:260px}
+  .app-grid{grid-template-columns:1fr}
+  .app-grid .tabs:last-child{grid-column:auto}
+  .app-grid .phone{order:-1}
+  .stories{grid-template-columns:1fr}
+  .panel{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .stats .stat:nth-child(2){border-right:0}
+  .stats .stat:nth-child(-n+2){border-bottom:1px solid var(--rule)}
+  .ratio-band{grid-template-columns:1fr;gap:24px}
+  .bento{grid-template-columns:repeat(2,1fr);grid-auto-rows:240px}
+  .ing p{max-height:90px;margin-top:6px}
+  .free-of{grid-template-columns:repeat(3,1fr)}
+  .free-of span:nth-child(3){border-right:0}
+  .free-of span:nth-child(-n+3){border-bottom:1px solid var(--rule)}
+  .certs{grid-template-columns:1fr 1fr}
+  .certs div:nth-child(2){border-right:0}
+  .certs div:nth-child(-n+2){border-bottom:1px solid var(--rule)}
+  .doc .card{position:relative;right:auto;top:auto;bottom:auto;width:auto;margin:340px 16px 16px}
+  .doc::after{background:linear-gradient(180deg,transparent 30%,rgba(36,16,31,.6))}
+  footer .g{grid-template-columns:1fr 1fr}
+  footer .g > div:nth-child(2){border-right:0}
+  footer .g > div{padding-left:0}
+}
+@media (max-width:720px){
+  .wrap{padding:0 16px}
+  .guides::before{width:calc(100% - 32px)}
+  .sec{padding:80px 0}
+  .navbar{margin:10px 10px 0;top:10px}
+  .navbar nav{display:none}
+  .hero{padding-top:18px}
+  .label{font-size:11px}
+  .label span:last-child,.label .sp{display:none}
+  .label span:nth-last-child(3){border-right:0}
+  .benefits{grid-template-columns:1fr}
+  .bun{grid-template-columns:1fr 1fr}
+  .bun div:nth-child(2){border-right:0}
+  .bun div:nth-child(-n+2){border-bottom:1px solid var(--rule)}
+  .plans{gap:8px}
+  .plan{padding:16px 6px 12px}
+  .plan h5{font-size:18px}.plan .p{font-size:16px}.plan s{display:block;margin:0}
+  .assure{grid-template-columns:1fr 1fr}
+  .assure div:nth-child(2){border-right:0}
+  .assure div:nth-child(-n+2){border-bottom:1px solid var(--rule)}
+  .card-s{padding:24px;top:90px!important}
+  .cause{flex-basis:290px}
+  .hscroll{padding:0 16px 10px}
+  .stops{grid-template-columns:repeat(5,1fr)}
+  .stop{padding:12px 4px;align-items:center!important;text-align:center;font-size:11.5px;flex-direction:column;gap:8px}
+  .stop small{display:none}
+  .stop .e{width:40px;height:40px;font-size:22px}
+  .jcard{min-height:0}
+  .story{grid-template-columns:1fr}
+  .story video{height:340px}
+  .revs{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr}
+  .stats .stat{border-right:0;border-bottom:1px solid var(--rule)}
+  .stats .stat:last-child{border-bottom:0}
+  .bento{grid-template-columns:1fr 1fr;grid-auto-rows:210px;gap:8px}
+  .ing.feat{grid-row:span 2}
+  .ing h4{font-size:21px}
+  .ing .bt{left:14px;right:14px;bottom:14px}
+  .ing p{display:none}
+  .ing.feat p{display:block;font-size:14px}
+  .ing.feat .big{font-size:70px}
+  .free-of{grid-template-columns:1fr 1fr}
+  .cmp-w{overflow-x:auto}
+  .cmp{min-width:620px;font-size:13.5px}
+  .certs{grid-template-columns:1fr}
+  .certs div{border-right:0!important;border-bottom:1px solid var(--rule)}
+  .certs div:last-child{border-bottom:0}
+  .doc{margin:0 10px;min-height:0}
+  .doc .card{padding:24px;margin-top:300px}
+  .final{margin:0 10px;padding:70px 20px}
+  .final .g{grid-template-columns:1fr 1fr}
+  .final .g span:nth-child(2){border-right:0}
+  .final .g span:nth-child(-n+2){border-bottom:1px solid var(--line-d)}
+  footer .g{grid-template-columns:1fr}
+  .sbar .in{padding:10px 14px;gap:10px}
+  .sbar .t small,.sbar .pr s{display:none}
+  .sbar img{width:40px;height:40px}
+  .sbar .btn{padding:13px 18px;font-size:15px}
+  .phone{max-width:300px}.scr{height:600px}
+}
+</style>
+</head>
+<body>
+
+<div class="announce">Free nutritionist consultation and app access with every order. COD available.</div>
+
+<div class="navbar"><div class="in">
+  <a href="#"><img src="https://happycysters.com/cdn/shop/files/HappyCysters.png?height=80" alt="happy cysters"></a>
+  <nav><a href="#">Shop</a><a href="#app">The App</a><a href="#science">Science</a><a href="#stories">Stories</a><a href="#">Community</a></nav>
+  <div class="r"><a href="#">Account</a><a href="#buy" class="cartc">Cart 0</a></div>
+</div></div>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="buy">
+  <div class="wrap hero-grid">
+    <div class="mosaic">
+      <div class="main">
+        <img id="mainImg" src="https://happycysters.com/cdn/shop/files/cystercare-pcos-supplement-for-women-myo-inositol-d-chiro-inositol-with-shatavari-3279619.png?width=1400" alt="CysterCare bottle and box">
+        <div class="badge"><span>New formula</span><span>PCOS &amp; PCOD support</span></div>
+        <div class="arrows"><button id="prev" aria-label="Previous">←</button><button id="next" aria-label="Next">→</button></div>
+      </div>
+      <div class="tile txt"><b>40<em>:1</em></b><p>Myo and D-Chiro Inositol in the ratio studied for PCOS.</p></div>
+      <div class="tile" data-i="1"><img src="https://happycysters.com/cdn/shop/files/Gemini_Generated_Image_t4o778t4o778t4o7_1.png?width=700" alt=""></div>
+      <div class="tile" data-i="6"><img src="https://happycysters.com/cdn/shop/files/b52acca55c62fa089802ed0c95d10d91.jpg?width=700" alt=""></div>
+      <div class="tile txt pink"><b>2<em>/day</em></b><p>Two capsules with a meal. That's all it takes.</p></div>
+      <div class="dots" id="dots"></div>
+    </div>
+
+    <div class="buy">
+      <div class="top"><span><span class="stars">★★★★★</span>&nbsp; 4.8 stars, 1,200+ women</span><a href="#reviews" style="text-decoration:underline">Read reviews</a></div>
+      <h1>CysterCare</h1>
+      <p class="sub">Daily capsules for PCOS and PCOD support</p>
+      <p class="desc">Irregular cycles, acne and stubborn weight aren't random. They're often signs of insulin resistance and hormonal imbalance. CysterCare pairs Myo and D-Chiro Inositol in the clinically studied 40:1 ratio with Shatavari, Chasteberry and 7 more actives, so you can work on the root cause, not just the symptoms.</p>
+
+      <div class="cells benefits">
+        <div><b>🩸</b><span>Regulates menstrual cycles</span></div>
+        <div><b>⚖️</b><span>Balances hormones</span></div>
+        <div><b>🏃‍♀️</b><span>Supports healthy weight</span></div>
+        <div><b>✨</b><span>Helps with acne and hair fall</span></div>
+      </div>
+
+      <div class="bundle-h"><b>Included with every order</b><span>At no extra cost</span></div>
+      <div class="cells bun">
+        <div><b>💊 CysterCare</b><small>60 veg capsules</small></div>
+        <div><b>🩺 1:1 consultation</b><small>PCOS nutritionist</small><span class="val">Worth ₹999</span></div>
+        <div><b>📱 Cyster Coach</b><small>AI app access</small><span class="val">Available 24/7</span></div>
+        <div><b>💬 Community</b><small>Private WhatsApp</small><span class="val">1,200+ members</span></div>
+      </div>
+
+      <div class="plan-h"><b>Choose your plan</b><span>Most women notice a change in 8 to 12 weeks</span></div>
+      <div class="plans" id="plans">
+        <div class="plan" data-n="1 Month" data-p="1,299" data-m="1,799" data-perk="Includes one nutritionist consultation and app access.">
+          <small>Starter</small><h5>1 Month</h5><span class="p">₹1,299</span><s>₹1,799</s><div class="save">Save ₹500</div>
+        </div>
+        <div class="plan on" data-n="3 Months" data-p="3,897" data-m="5,397" data-perk="<b>Recommended.</b> Three consultations (start, week 4 and week 10) plus 3 months of app Premium.">
+          <span class="chip">Recommended</span><small>Full cycle</small><h5>3 Months</h5><span class="p">₹3,897</span><s>₹5,397</s><div class="save">Save ₹1,500</div>
+        </div>
+        <div class="plan" data-n="6 Months" data-p="7,794" data-m="10,794" data-perk="<b>Best value.</b> Monthly consultations, 6 months of app Premium and priority support.">
+          <span class="chip b">Best value</span><small>Long term</small><h5>6 Months</h5><span class="p">₹7,794</span><s>₹10,794</s><div class="save">Save ₹3,000</div>
+        </div>
+      </div>
+      <div class="perks" id="perks">✦ <span><b>Recommended.</b> Three consultations (start, week 4 and week 10) plus 3 months of app Premium.</span></div>
+      <div class="cta"><button class="btn btn-dark" id="atc">Add to cart · ₹3,897 <span class="arrow">→</span></button></div>
+      <div class="cells assure">
+        <div><b>🚚 Free</b>shipping</div><div><b>💵 COD</b>available</div><div><b>🔄 30-day</b>money back</div><div><b>📦 1 to 2 day</b>dispatch</div>
+      </div>
+
+      <div class="acc-list">
+        <details><summary>How to use</summary><p>Take 2 capsules a day with water, ideally with a meal. Pick a time you'll remember and the app will remind you. If you're pregnant, nursing or on medication, check with your doctor first.</p></details>
+        <details><summary>Ingredients</summary><p>Myo-Inositol, D-Chiro-Inositol (40:1), Shatavari, Chasteberry, Moringa, Amla, Zinc Bisglycinate, Vitamin D3, L-Methylfolate and Black Pepper. Plant-powered, gluten-free, lactose-free, preservative-free and 100% vegetarian.</p></details>
+        <details><summary>Shipping and returns</summary><p>Orders ship within 1 to 2 business days. Delivery takes 3 to 5 days in metro cities and 5 to 7 days elsewhere. Free shipping on prepaid orders, COD across India, and a 30-day money-back guarantee.</p></details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marq"><div class="t">
+  <span>regular cycles</span><i>🌸</i><em>clearer skin</em><i>🌸</i><span>steady energy</span><i>🌸</i><em>fewer cravings</em><i>🌸</i><span>less hair fall</span><i>🌸</i><em>balanced hormones</em><i>🌸</i>
+  <span>regular cycles</span><i>🌸</i><em>clearer skin</em><i>🌸</i><span>steady energy</span><i>🌸</i><em>fewer cravings</em><i>🌸</i><span>less hair fall</span><i>🌸</i><em>balanced hormones</em><i>🌸</i>
+</div></div>
+
+<!-- ================= ECOSYSTEM ================= -->
+<section class="sec guides">
+  <div class="wrap">
+    <div class="label rv"><span>🌸</span><span>The support system</span><span class="sp"></span><span>nourish <i>🌸</i> nurture <i>🌸</i> navigate</span></div>
+    <div class="eco-grid">
+      <div class="eco-left rv">
+        <h2 class="h-l">Support that goes <span class="serif acc">beyond</span> the bottle.</h2>
+        <p class="lead">Managing PCOS takes more than a capsule. Every order includes expert guidance, an AI coach and a community, so you never have to figure it out alone.</p>
+        <div class="cells count"><div><b>4</b>layers of support</div><div><b>₹0</b>extra cost</div><div><b>24/7</b>AI coach</div></div>
+      </div>
+      <div class="stack">
+        <article class="card-s">
+          <div class="l"><div><span class="n">💊 The formula</span><h3>Ten actives. <span class="serif acc">No hormones.</span></h3><p>Built around the 40:1 inositol ratio and supported by Shatavari, Chasteberry, zinc and essential vitamins.</p></div><a href="#science" class="go">See the ingredients →</a></div>
+          <div class="vis"><img src="https://happycysters.com/cdn/shop/files/cystercare-pcos-supplement-for-women-myo-inositol-d-chiro-inositol-with-shatavari-8440391.png?width=800" alt=""></div>
+        </article>
+        <article class="card-s">
+          <div class="l"><div><span class="n">🩺 The expert</span><h3>A free 1:1 with a <span class="serif" style="color:var(--pink)">PCOS nutritionist.</span></h3><p>Share your symptoms, medication and routine. Get a plan that works with Indian food and your everyday schedule.</p></div><a href="#" class="go">Book a slot →</a></div>
+          <div class="slot"><span class="d">Pick a time · Tomorrow</span><div class="times"><span>10:00 am</span><span class="on">11:30 am</span><span>4:00 pm</span><span>7:30 pm</span></div><span class="f">15 minutes over video or phone. Free with every order.</span></div>
+        </article>
+        <article class="card-s">
+          <div class="l"><div><span class="n">📱 The coach</span><h3>An AI nutritionist and <span class="serif" style="color:var(--plum)">life coach.</span></h3><p>Track meals, cycles and symptoms in one place, and get clear next steps based on your own data.</p></div><a href="#app" class="go">Explore the app →</a></div>
+          <div class="vis"><img src="https://happycysters.com/cdn/shop/files/Gemini_Generated_Image_t4o778t4o778t4o7_1.png?width=800" alt=""></div>
+        </article>
+        <article class="card-s">
+          <div class="l"><div><span class="n">💬 The community</span><h3>A community that <span class="serif acc">understands.</span></h3><p>Join a private WhatsApp group of women managing PCOS. Ask questions, share progress and learn from each other.</p></div><a href="#" class="go">Join the community →</a></div>
+          <div class="wa">
+            <div><small>Sneha · Mumbai</small>Does anyone else get chin acne right before their period?</div>
+            <div><small>Ritika · Delhi</small>Yes! Cutting back on late-night chai helped me a lot.</div>
+            <div class="me">Starting CysterCare today 💛</div>
+            <div><small>Aisha · Nutritionist</small>Welcome! Ask us anything here, any time.</div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ROOT CAUSES ================= -->
+<section class="sec dark guides">
+  <div class="wrap">
+    <div class="label rv"><span>🧬</span><span>Understanding PCOS</span><span class="sp"></span><span>nourish <i>🌸</i> nurture <i>🌸</i> navigate</span></div>
+    <div class="row-head rv">
+      <h2 class="h-l" style="max-width:760px">Five root causes. <span class="serif acc">One approach.</span></h2>
+      <div class="hs-ctrl"><button id="cl" aria-label="Scroll left">←</button><button id="cr" aria-label="Scroll right">→</button></div>
+    </div>
+  </div>
+  <div class="hscroll" id="hs">
+    <div class="cause"><div class="hd"><span class="em">🍬</span><span>Insulin resistance</span></div><div class="bd"><h4>Blood sugar swings</h4><p>When your cells stop responding well to insulin, your body makes more of it. That can raise androgen levels and lead to cravings and weight gain.</p></div><div class="helps"><small>What helps</small><div><span>Myo-Inositol</span><span>D-Chiro-Inositol</span><span>Meal guidance</span></div></div></div>
+    <div class="cause"><div class="hd"><span class="em">🧬</span><span>Androgen excess</span></div><div class="bd"><h4>Hormonal imbalance</h4><p>Higher androgen levels can show up as acne, facial hair and thinning hair. It's common, and it can be managed.</p></div><div class="helps"><small>What helps</small><div><span>Chasteberry</span><span>Shatavari</span><span>Zinc</span></div></div></div>
+    <div class="cause"><div class="hd"><span class="em">🌙</span><span>Irregular ovulation</span></div><div class="bd"><h4>Unpredictable cycles</h4><p>Without regular ovulation, periods can come late, arrive irregularly or skip months altogether.</p></div><div class="helps"><small>What helps</small><div><span>40:1 Inositols</span><span>Shatavari</span><span>Cycle tracking</span></div></div></div>
+    <div class="cause"><div class="hd"><span class="em">🔥</span><span>Inflammation</span></div><div class="bd"><h4>Chronic low-grade inflammation</h4><p>Ongoing inflammation is linked to fatigue, bloating and worsening insulin resistance.</p></div><div class="helps"><small>What helps</small><div><span>Amla</span><span>Moringa</span><span>Black Pepper</span></div></div></div>
+    <div class="cause"><div class="hd"><span class="em">🔋</span><span>Nutrients and stress</span></div><div class="bd"><h4>Running on empty</h4><p>Low vitamin D and folate are common in women with PCOS, and stress can make every symptom feel worse.</p></div><div class="helps"><small>What helps</small><div><span>Vitamin D3</span><span>L-Methylfolate</span><span>Coach check-ins</span></div></div></div>
+    <div style="flex:0 0 16px"></div>
+  </div>
+</section>
+
+<!-- ================= APP ================= -->
+<section class="sec guides" id="app" style="background:var(--tint)">
+  <div class="wrap">
+    <div class="label rv" style="background:var(--tint)"><span>📱</span><span>The Happy Cysters app</span><span class="sp"></span><span>free with every order</span></div>
+    <div class="row-head rv">
+      <h2 class="h-l app-head">Your nutritionist and coach, <span class="serif acc">always on.</span></h2>
+      <p class="lead" style="max-width:400px">Cyster Coach learns your cycle, meals and habits, and helps you make small changes that add up over time.</p>
+    </div>
+    <div class="app-grid">
+      <div class="tabs">
+        <button class="tab on" data-v="0"><small>💬</small><h5>Ask Cyster Coach</h5><p>Get answers to everyday PCOS questions, from cravings to lab reports, at any time of day.</p></button>
+        <button class="tab" data-v="1"><small>📸</small><h5>Snap your meals</h5><p>Log meals with a photo and get balanced swaps for the Indian food you already eat.</p></button>
+      </div>
+      <div class="phone rv"><div class="scr"><div class="notch"></div>
+        <div class="view on">
+          <div class="v-h"><div style="display:flex;gap:10px;align-items:center"><div class="av">C</div><div><b style="font-size:16px">Cyster Coach</b><br><span style="color:#1F9D63">● Online</span></div></div><span>Day 18 · Luteal</span></div>
+          <div class="bub me">I'm craving sweets so much today 😩</div>
+          <div class="bub ai">That's common around day 18. Your luteal phase can affect blood sugar. Try one of these:<ul><li>Roasted makhana with 4 dates</li><li>Greek yogurt with cinnamon</li><li>A 10-minute walk after lunch</li></ul></div>
+          <div class="bub me">Can I take CysterCare with metformin?</div>
+          <div class="bub ai">Many women do, but timing matters. I've booked you a 15-minute call with Aisha tomorrow at 11:30 am.</div>
+          <div class="inp">Ask anything… <b>Send</b></div>
+        </div>
+        <div class="view">
+          <div class="v-h"><b>Lunch</b><span>Today, 1:42 pm</span></div>
+          <div class="meal"><div class="ph"></div><div class="bd"><b>Moong dal, 2 roti, palak sabzi</b><div style="color:var(--muted);font-size:11.5px">About 520 kcal · logged by photo</div></div></div>
+          <div class="macros"><div><b>24g</b><small>protein</small><div class="bar"><i style="width:70%"></i></div></div><div><b>11g</b><small>fibre</small><div class="bar"><i style="width:55%"></i></div></div><div><b>Low</b><small>GI load</small><div class="bar"><i style="width:30%"></i></div></div></div>
+          <div class="tip"><b>💡 Coach tip:</b> Swap one roti for a bowl of curd to keep your energy steady at 4 pm.</div>
+          <div class="ring"><div class="c"><span>62%</span></div><div><b style="font-size:14px">Daily protein goal</b><div style="color:var(--muted)">62g of 90g. One paneer snack to go.</div></div></div>
+        </div>
+        <div class="view">
+          <div class="v-h"><b>November</b><span>Cycle day 18</span></div>
+          <div class="cal">
+            <span class="hd">M</span><span class="hd">T</span><span class="hd">W</span><span class="hd">T</span><span class="hd">F</span><span class="hd">S</span><span class="hd">S</span>
+            <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span>
+            <span>8</span><span>9</span><span class="f">10</span><span class="f">11</span><span class="f">12</span><span>13</span><span>14</span>
+            <span>15</span><span>16</span><span>17</span><span class="t">18</span><span>19</span><span>20</span><span>21</span>
+            <span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span class="p">27</span><span class="p">28</span>
+          </div>
+          <div style="display:flex;gap:12px;font-size:11px;color:var(--muted)"><span style="color:var(--magenta)">● Predicted period</span><span>● Fertile window</span></div>
+          <div style="font-weight:600;margin-top:4px">How are you feeling today?</div>
+          <div class="sym"><span class="on">Bloated</span><span>Acne</span><span class="on">Cravings</span><span>Low mood</span><span>Energetic</span><span>Cramps</span></div>
+          <div class="tip"><b>🔎 Pattern found:</b> your cravings start about 3 days before your period, three cycles in a row. Want a plan for that week?</div>
+        </div>
+        <div class="view">
+          <div class="v-h"><b>Today</b><span>Thu, 7 Nov</span></div>
+          <div class="streak"><div><b>12</b><br><span style="font-size:12px;opacity:.7">day capsule streak</span></div><em>keep it going</em></div>
+          <div class="rem"><div class="ic">💊</div><div><b>Morning capsule</b><small>With breakfast · 8:30 am</small></div><span class="ok">✓</span></div>
+          <div class="rem"><div class="ic">🚶‍♀️</div><div><b>10-minute walk after lunch</b><small>Suggested by your coach</small></div><span class="ok">✓</span></div>
+          <div class="rem"><div class="ic">💧</div><div><b>Water: 6 of 8 glasses</b><small>2 more to go</small></div><span class="no"></span></div>
+          <div class="rem"><div class="ic">💊</div><div><b>Evening capsule</b><small>With dinner · 8:00 pm</small></div><span class="no"></span></div>
+          <div class="rem"><div class="ic">📞</div><div><b>Week 4 check-in</b><small>With Aisha · Monday</small></div><span class="no"></span></div>
+        </div>
+      </div></div>
+      <div class="tabs">
+        <button class="tab" data-v="2"><small>🗓️</small><h5>Track your cycle</h5><p>Log periods, symptoms and mood. The app spots patterns for you over time.</p></button>
+        <button class="tab" data-v="3"><small>✅</small><h5>Build better habits</h5><p>Capsule reminders, streaks and daily check-ins that help you stay consistent.</p></button>
+      </div>
+    </div>
+    <div class="stores">
+      <a href="#" class="store"><svg viewBox="0 0 24 24"><path d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9-1.7 0-3.3 1-4.2 2.6-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8s2 .8 3.4.8c1.4 0 2.3-1.3 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9-.1 0-2.7-1-2.7-4.1zM13.9 5c.7-.9 1.2-2 1-3.2-1 0-2.3.7-3 1.6-.7.8-1.2 2-1.1 3.1 1.2.1 2.3-.6 3.1-1.5z"/></svg><span>Download on the<b>App Store</b></span></a>
+      <a href="#" class="store"><svg viewBox="0 0 24 24"><path d="M3.6 1.8c-.3.3-.5.8-.5 1.4v17.6c0 .6.2 1.1.5 1.4l9.8-10.2L3.6 1.8zm10.9 11.3 2.8 2.9-11.6 6.6 8.8-9.5zm0-2.2L5.7 1.4l11.6 6.6-2.8 2.9zm3.9 4.4-3.1-3.2 3.1-3.2 3.6 2c1 .6 1 1.6 0 2.2l-3.6 2.2z"/></svg><span>Get it on<b>Google Play</b></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= INGREDIENTS ================= -->
+<section class="sec guides" id="science">
+  <div class="wrap">
+    <div class="label rv"><span>🌿</span><span>Ingredients</span><span class="sp"></span><span>10 precision ingredients</span></div>
+    <div class="ratio-band rv">
+      <div class="num">40<em>:1</em></div>
+      <div><h3>Proven science. <span class="serif acc">Thoughtful ingredients.</span></h3><p>Healthy ovaries keep Myo-Inositol and D-Chiro-Inositol at roughly 40:1. In PCOS, that balance is often disrupted. CysterCare restores it, then adds botanicals and micronutrients for complete support.</p></div>
+    </div>
+    <div class="bento">
+      <div class="ing feat rv"><img src="https://happycysters.com/cdn/shop/files/hc_34e3991e-3cb1-403f-bee9-2708e328b73e.png?width=1200" alt=""><span class="tg">🔬 Clinical actives</span>
+        <div class="bt"><div class="big">40<em>:1</em></div><h4>Myo + D-Chiro Inositol</h4><p>The core of the formula. Together they support insulin sensitivity, ovulation and healthy ovarian function.</p></div></div>
+      <div class="ing rv"><img src="https://happycysters.com/cdn/shop/files/b52acca55c62fa089802ed0c95d10d91.jpg?width=700" alt=""><span class="tg">🌿 Ayurvedic</span><div class="bt"><h4>Shatavari</h4><p>Traditionally used to support women's hormonal health and cycle balance.</p></div></div>
+      <div class="ing rv"><img src="https://happycysters.com/cdn/shop/files/af516ad866fb4375782116f57f90a83f.jpg?width=700" alt=""><span class="tg">🍃 Botanical</span><div class="bt"><h4>Chasteberry</h4><p>Helps support menstrual regularity and a steady hormonal rhythm.</p></div></div>
+      <div class="ing rv"><img src="https://happycysters.com/cdn/shop/files/fe3ab5b1f83db75ae2dec4900b318d2e.jpg?width=700" alt=""><span class="tg">🍃 Botanical</span><div class="bt"><h4>Moringa</h4><p>A nutrient-rich leaf that supports overall energy and vitality.</p></div></div>
+      <div class="ing rv"><img src="https://happycysters.com/cdn/shop/files/0817fd257aa5f4a71c48dddbefe44712.jpg?width=700" alt=""><span class="tg">🌿 Ayurvedic</span><div class="bt"><h4>Amla</h4><p>A natural source of antioxidants that supports skin and everyday health.</p></div></div>
+      <div class="ing rv"><img src="https://happycysters.com/cdn/shop/files/43e579189d9502a2f96861d0e1714656.jpg?width=700" alt=""><span class="tg">⚡ Mineral</span><div class="bt"><h4>Zinc Bisglycinate</h4><p>A highly absorbable form of zinc for skin, hair and hormone balance.</p></div></div>
+      <div class="ing rv"><img src="https://happycysters.com/cdn/shop/files/5f9ac1712ffa7cd9c48008e2821fd68f.jpg?width=700" alt=""><span class="tg">☀️ Vitamin</span><div class="bt"><h4>Vitamin D3</h4><p>Supports hormonal balance and immune health.</p></div></div>
+      <div class="ing rv"><img src="https://happycysters.com/cdn/shop/files/ad8e378eb81d42ff08fb1cfa48c8064e.jpg?width=700" alt=""><span class="tg">☀️ Vitamin</span><div class="bt"><h4>L-Methylfolate</h4><p>The active form of folate, supporting mood and cell function.</p></div></div>
+      <div class="ing rv"><img src="https://happycysters.com/cdn/shop/files/59f3d63a201f045063e6f2086729b4c5.jpg?width=700" alt=""><span class="tg">🌶️ Enhancer</span><div class="bt"><h4>Black Pepper</h4><p>Improves absorption, so your body makes better use of every ingredient.</p></div></div>
+    </div>
+    <div class="cells free-of rv"><span>🚫 Non-hormonal</span><span>🌱 Plant-powered</span><span>🌾 Gluten-free</span><span>🥛 Lactose-free</span><span>🧪 No preservatives</span><span>🥬 100% vegetarian</span></div>
+  </div>
+</section>
+
+<!-- ================= DOCTOR ================= -->
+<section class="doc rv">
+  <img src="https://happycysters.com/cdn/shop/files/21.jpg?width=1800" alt="Dt. Jyoti Chabria">
+  <div class="card">
+    <div>
+      <div class="k">Formulated by doctors, not trends</div>
+      <blockquote>"I created CysterCare for the women I met in my clinic every day. Many had <em>tried everything</em> and still felt unheard."</blockquote>
+      <p style="color:#4a424a;font-size:15px">With decades of experience in clinical nutrition, Dt. Jyoti Chabria designed CysterCare around what women with PCOS actually need: the right nutrients, in the right dose, at the right time.</p>
+    </div>
+    <div class="foot">
+      <div><div class="sig">Jyoti Chabria</div><small style="color:var(--muted)">Founder and formulator</small></div>
+      <a href="#" class="btn btn-dark">Book a free consultation <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= JOURNEY ================= -->
+<section class="sec dark guides" style="margin-top:120px">
+  <div class="wrap">
+    <div class="label rv"><span>⏳</span><span>What to expect</span><span class="sp"></span><span>results may vary</span></div>
+    <div class="row-head rv">
+      <h2 class="h-l">Progress, <span class="serif acc">over time.</span></h2>
+      <p class="lead" style="max-width:400px">Select a stage to see what you may notice and how we support you along the way.</p>
+    </div>
+    <div class="rv">
+      <div class="stops" id="stops">
+        <button class="stop on" data-s="0"><span class="e">🌱</span><span><small>Stage 1</small><b>Week 1</b></span></button>
+        <button class="stop" data-s="1"><span class="e">☀️</span><span><small>Stage 2</small><b>Month 1</b></span></button>
+        <button class="stop" data-s="2"><span class="e">✨</span><span><small>Stage 3</small><b>Month 2</b></span></button>
+        <button class="stop" data-s="3"><span class="e">🌸</span><span><small>Stage 4</small><b>Month 3</b></span></button>
+        <button class="stop" data-s="4"><span class="e">💖</span><span><small>Stage 5</small><b>Month 6</b></span></button>
+      </div>
+      <div class="panel" id="panel"></div>
+      <p class="note">*Individual results may vary. This timeline is illustrative, based on what women in our community commonly report, and is not a guarantee of outcomes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STATS ================= -->
+<section class="sec guides">
+  <div class="wrap">
+    <div class="label rv"><span>📊</span><span>Real results</span><span class="sp"></span><span class="ph-tag" style="opacity:.8">Placeholder survey data</span></div>
+    <div class="row-head rv"><h2 class="h-l">Real women. <span class="serif acc">Real results.</span></h2><p class="lead" style="max-width:380px">What our community reported after 12 weeks of CysterCare, consultations and the app.</p></div>
+    <div class="cells stats rv">
+      <div class="stat"><b>84<sup>%</sup></b><p>noticed more regular cycles by month three</p></div>
+      <div class="stat"><b>78<sup>%</sup></b><p>had fewer sugar cravings and steadier energy</p></div>
+      <div class="stat"><b>71<sup>%</sup></b><p>saw clearer skin and less hair fall</p></div>
+      <div class="stat"><b>92<sup>%</sup></b><p>said the consultations and app made it easier to stay consistent</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STORIES (placeholder) ================= -->
+<section class="sec guides" id="stories" style="padding-top:0">
+  <div class="wrap">
+    <div class="row-head rv"><h2 class="h-l">Their stories, <span class="serif acc">in their words.</span></h2><a href="#" class="btn btn-line">View all stories <span class="arrow">→</span></a></div>
+    <div class="stories">
+      <article class="story rv">
+        <video src="https://happycysters.com/cdn/shop/videos/c/vp/0701f0a48f6d49bca10dff572f195992/0701f0a48f6d49bca10dff572f195992.HD-1080p-7.2Mbps-83859054.mp4#t=1" muted playsinline loop preload="metadata"></video>
+        <div class="bd">
+          <div class="who"><span>Priya, 27 · Pune</span><span class="ph-tag">Placeholder</span></div>
+          <q>"My cycle went from over 60 days to <em>34.</em> I finally feel like my body is working with me."</q>
+          <div class="bfa"><div><span>Before</span><p>Irregular periods, evening sugar cravings and three different diets in a year.</p></div><div><span>Her plan</span><p>CysterCare daily, a meal plan from her consultation and walks after meals.</p></div></div>
+          <div class="mt"><div><b>34 days</b><small>cycle length</small></div><div><b>12 wks</b><small>on the plan</small></div><div><b>91%</b><small>days logged</small></div></div>
+        </div>
+      </article>
+      <article class="story rv">
+        <video src="https://happycysters.com/cdn/shop/videos/c/vp/b4fa9015a52844dc803655ba9ba2ced4/b4fa9015a52844dc803655ba9ba2ced4.HD-1080p-7.2Mbps-83859052.mp4#t=1" muted playsinline loop preload="metadata"></video>
+        <div class="bd">
+          <div class="who"><span>Ananya, 31 · Bengaluru</span><span class="ph-tag">Placeholder</span></div>
+          <q>"I didn't know lean PCOS was a thing. <em>The app explained it</em> better than anyone had."</q>
+          <div class="bfa"><div><span>Before</span><p>Cystic acne along the jaw, hair fall and constant fatigue.</p></div><div><span>Her plan</span><p>CysterCare, zinc-rich food swaps, and sleep and stress check-ins with Cyster Coach.</p></div></div>
+          <div class="mt"><div><b>Clearer</b><small>skin by week 10</small></div><div><b>3</b><small>consultations</small></div><div><b>8 hrs</b><small>average sleep</small></div></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= REVIEWS ================= -->
+<section class="sec guides" id="reviews" style="background:var(--tint)">
+  <div class="wrap">
+    <div class="label rv" style="background:var(--tint)"><span>💬</span><span>Reviews</span><span class="sp"></span><span>verified buyers</span></div>
+    <div class="rev-wrap">
+      <div class="score rv">
+        <b>4.8</b>
+        <div class="stars" style="font-size:18px;margin-top:10px">★★★★★</div>
+        <small style="color:var(--muted)">Trusted by 1,200+ women</small>
+        <div class="bars"><div>5★<i style="--w:86%"></i><span>86%</span></div><div>4★<i style="--w:10%"></i><span>10%</span></div><div>3★<i style="--w:3%"></i><span>3%</span></div><div>2★<i style="--w:1%"></i><span>1%</span></div><div>1★<i style="--w:0%"></i><span>0%</span></div></div>
+        <a href="#" class="btn btn-dark" style="width:100%">Write a review</a>
+      </div>
+      <div class="cells revs rv">
+        <div class="rev"><span class="stars">★★★★★</span><p>I finally feel more in control. After a few weeks of staying consistent, my cycle feels more regular and my energy is better too.</p><div class="by"><b>Riya</b><span class="v">✓ Verified</span></div></div>
+        <div class="rev"><span class="stars">★★★★★</span><p>I wanted a supplement made specifically for PCOS. The free consultation sealed it. She even checked the timing with my metformin.</p><div class="by"><b>Payal S.</b><span class="v">✓ Verified</span></div></div>
+        <div class="rev"><span class="stars">★★★★★</span><p>Really easy to add to my routine. Two capsules a day and that's it.</p><div class="by"><b>Neha</b><span class="v">✓ Verified</span></div></div>
+        <div class="rev"><span class="stars">★★★★★</span><p>My routine is much more consistent now. Honestly, the app reminders are half the reason.</p><div class="by"><b>Pooja T.</b><span class="v">✓ Verified</span></div></div>
+        <div class="rev"><span class="stars">★★★★★</span><p>Clean ingredients and an easy daily routine. I'll be ordering again.</p><div class="by"><b>Mahima T.</b><span class="v">✓ Verified</span></div></div>
+        <div class="rev"><span class="stars">★★★★★</span><p>The capsules are small and easy to swallow. Really happy with the quality and packaging.</p><div class="by"><b>Garima M.</b><span class="v">✓ Verified</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= COMPARE ================= -->
+<section class="sec guides">
+  <div class="wrap">
+    <div class="label rv"><span>✨</span><span>Why CysterCare</span><span class="sp"></span><span>side by side</span></div>
+    <div class="row-head rv"><h2 class="h-l">Why CysterCare <span class="serif acc">is different.</span></h2><p class="lead" style="max-width:420px">Most PCOS supplements stop at the capsule. Here's how we compare with other inositol brands, and with managing PCOS on your own.</p></div>
+    <div class="cmp-w rv">
+      <table class="cmp">
+        <thead><tr><th style="color:var(--muted);font-size:13px;font-weight:400">What you get</th><th class="us">CysterCare<small>Capsules + consult + app</small></th><th>Inositol-only supplements<small>Capsules or powder only</small></th><th>Managing it on your own<small>Diet charts, Google and forums</small></th></tr></thead>
+        <tbody>
+          <tr><td>Myo and D-Chiro Inositol in a 40:1 ratio</td><td class="us y">●</td><td class="dk">●</td><td class="n">○</td></tr>
+          <tr><td>Shatavari, Chasteberry and 7 more actives</td><td class="us y">●</td><td class="n">○</td><td class="n">○</td></tr>
+          <tr><td>Free 1:1 nutritionist consultation</td><td class="us y">●</td><td class="n">○</td><td class="n">○</td></tr>
+          <tr><td>AI nutritionist and life coach</td><td class="us y">●</td><td class="n">○</td><td class="n">○</td></tr>
+          <tr><td>Cycle, meal and symptom tracking</td><td class="us y">●</td><td class="n">○</td><td class="n">Manual notes</td></tr>
+          <tr><td>Community of 1,200+ women</td><td class="us y">●</td><td class="n">○</td><td class="n">Online forums</td></tr>
+          <tr><td>Non-hormonal and 100% vegetarian</td><td class="us y">●</td><td class="n">Varies</td><td class="n">○</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="cells certs rv">
+      <div><img src="https://happycysters.com/cdn/shop/files/1.jpg?width=120" alt=""><span><b>FSSAI licensed</b>Food safety and standards</span></div>
+      <div><img src="https://happycysters.com/cdn/shop/files/images.png?width=160" alt=""><span><b>FDA-approved facility</b>Audited and certified</span></div>
+      <div><img src="https://happycysters.com/cdn/shop/files/4.jpg?width=120" alt=""><span><b>Made in India</b>Proudly manufactured here</span></div>
+      <div><img src="https://happycysters.com/cdn/shop/files/hc_2.png?width=120" alt=""><span><b>30-day guarantee</b>Full refund if it's not for you</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="sec guides" style="padding-top:0">
+  <div class="wrap">
+    <div class="label rv"><span>🙋‍♀️</span><span>FAQs</span><span class="sp"></span><span>still curious?</span></div>
+    <div class="faq">
+      <div class="rv">
+        <h2 class="h-l">Frequently asked <span class="serif acc">questions.</span></h2>
+        <p class="lead" style="margin-top:18px">Everything you need to know about CysterCare, the consultation and the app.</p>
+        <div class="helpbox"><div><h4>🤔 Not sure yet?</h4><p>Speak to a PCOS nutritionist before you buy. It's free, takes 15 minutes and there's no pressure.</p></div><div><a href="#" class="btn btn-mag">Book a free consultation <span class="arrow">→</span></a></div></div>
+      </div>
+      <div class="faq-list rv">
+        <details open><summary>What's in CysterCare?</summary><p>Myo-Inositol and D-Chiro-Inositol in the 40:1 ratio used in PCOS research, plus Shatavari, Chasteberry, Moringa and Amla extracts, Zinc Bisglycinate, Vitamin D3, L-Methylfolate and Black Pepper. It's 100% vegetarian and free from gluten, lactose and preservatives.</p></details>
+        <details><summary>Will it help with acne, facial hair, irregular periods or weight?</summary><p>CysterCare supports the main drivers behind these symptoms: insulin sensitivity and hormonal balance. Most women notice changes in their cycle and energy within 8 to 12 weeks, especially alongside good sleep, balanced meals and regular movement.</p></details>
+        <details><summary>Is it hormonal? Can I take it long term?</summary><p>No, it's non-hormonal. There are no synthetic hormones or steroids in the formula. It's designed for daily, long-term use and isn't habit-forming.</p></details>
+        <details><summary>Can I take it with metformin or thyroid medication?</summary><p>Many women do, but inositol can interact with diabetes and thyroid medication, so timing matters. Book your free consultation and share what you take. If you're pregnant or nursing, please check with your doctor first.</p></details>
+        <details><summary>What's included in the consultation and the app?</summary><p>The consultation is a 1:1 session with a nutritionist who reviews your symptoms and creates a plan for you. The app helps you follow it, with Cyster Coach (our AI nutritionist and life coach), meal and cycle tracking, and capsule reminders.</p></details>
+        <details><summary>How long does delivery take? Is COD available?</summary><p>Orders ship within 1 to 2 business days and arrive in 3 to 5 days in metro cities, or 5 to 7 days elsewhere. COD is available across India, shipping is free, and every order comes with a 30-day money-back guarantee.</p></details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FINAL ================= -->
+<section class="final dark rv">
+  <div class="tagline">nourish <i>🌸</i> nurture <i>🌸</i> navigate</div>
+  <h2 class="h-xl">One in five women has PCOS. <span class="serif acc">You don't have to manage it alone.</span></h2>
+  <p class="lead">Start with the capsules. Stay for the consultations, the coach and a community that understands.</p>
+  <div class="acts"><a href="#buy" class="btn btn-white">Start my 3-month plan <span class="arrow">→</span></a><a href="#" class="btn btn-line">Talk to a nutritionist</a></div>
+  <div class="cells g"><span>🩺 Free consultation</span><span>📱 App included</span><span>💵 COD available</span><span>🔄 30-day guarantee</span></div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="g">
+      <div><p style="max-width:320px">Science-backed PCOS support, real experts and a community that understands.</p></div>
+      <div><h5>Shop</h5><ul><li>CysterCare</li><li>The App</li><li>Free Consultation</li><li>Community</li></ul></div>
+      <div><h5>Policies</h5><ul><li>Privacy</li><li>Refunds</li><li>Shipping</li><li>Terms</li></ul></div>
+      <div><h5>Get ₹100 off your first order</h5><input placeholder="Your email"><a href="#" class="btn btn-white" style="padding:12px 22px">Sign up</a></div>
+    </div>
+    <div class="big">happy <em>cysters</em></div>
+    <div style="display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:40px;font-size:12px"><span>© 2026 Jyoti Wellness Pvt Ltd.</span><span>This product is not intended to diagnose, treat, cure or prevent any disease.</span></div>
+  </div>
+</footer>
+
+<div class="sbar" id="sbar"><div class="in">
+  <img src="https://happycysters.com/cdn/shop/files/cystercare-pcos-supplement-for-women-myo-inositol-d-chiro-inositol-with-shatavari-3279619.png?width=120" alt="">
+  <div class="t"><b>CysterCare · <span id="sbN">3 Months</span></b><small>Free consultation and app included</small></div>
+  <div class="pr">₹<span id="sbP">3,897</span><s>₹<span id="sbM">5,397</span></s></div>
+  <a href="#buy" class="btn btn-dark">Add to cart</a>
+</div></div>
+
+<script>
+const B='https://happycysters.com/cdn/shop/files/';
+const G=['cystercare-pcos-supplement-for-women-myo-inositol-d-chiro-inositol-with-shatavari-3279619.png','Gemini_Generated_Image_t4o778t4o778t4o7_1.png','cystercare-pcos-supplement-for-women-myo-inositol-d-chiro-inositol-with-shatavari-8440391.png','cystercare-pcos-supplement-for-women-myo-inositol-d-chiro-inositol-with-shatavari-9693197.png','cystercare-pcos-supplement-for-women-myo-inositol-d-chiro-inositol-with-shatavari-4726192.png','cystercare-pcos-supplement-for-women-myo-inositol-d-chiro-inositol-with-shatavari-9361108.png','b52acca55c62fa089802ed0c95d10d91.jpg'];
+let gi=0;const mi=document.getElementById('mainImg'),dots=document.getElementById('dots');
+G.forEach((_,i)=>{const d=document.createElement('i');d.onclick=()=>show(i);dots.appendChild(d)});
+function show(i){gi=(i+G.length)%G.length;mi.style.opacity=0;setTimeout(()=>{mi.src=B+G[gi]+'?width=1400';mi.style.opacity=1},160);[...dots.children].forEach((d,k)=>d.classList.toggle('on',k===gi))}
+show(0);
+prev.onclick=()=>show(gi-1);next.onclick=()=>show(gi+1);
+document.querySelectorAll('.tile[data-i]').forEach(t=>t.onclick=()=>show(+t.dataset.i));
+
+const plans=document.querySelectorAll('.plan'),atc=document.getElementById('atc'),perks=document.getElementById('perks');
+plans.forEach(p=>p.onclick=()=>{plans.forEach(x=>x.classList.remove('on'));p.classList.add('on');atc.innerHTML=`Add to cart · ₹${p.dataset.p} <span class="arrow">→</span>`;perks.innerHTML='✦ <span>'+p.dataset.perk+'</span>';sbN.textContent=p.dataset.n;sbP.textContent=p.dataset.p;sbM.textContent=p.dataset.m});
+
+const sbar=document.getElementById('sbar');
+addEventListener('scroll',()=>{const b=atc.getBoundingClientRect().bottom;const f=document.querySelector('footer').getBoundingClientRect().top;sbar.classList.toggle('show',b<0&&f>innerHeight-40)},{passive:true});
+
+const hs=document.getElementById('hs');
+cl.onclick=()=>hs.scrollBy({left:-370,behavior:'smooth'});cr.onclick=()=>hs.scrollBy({left:370,behavior:'smooth'});
+
+const tabs=document.querySelectorAll('.tab'),views=document.querySelectorAll('.view');let tv=0,tt;
+function setTab(v){tv=v;tabs.forEach(t=>t.classList.toggle('on',+t.dataset.v===v));views.forEach((w,k)=>w.classList.toggle('on',k===v))}
+tabs.forEach(t=>t.onclick=()=>{setTab(+t.dataset.v);clearInterval(tt)});
+tt=setInterval(()=>setTab((tv+1)%4),5000);
+
+const J=[
+ {t:'Week 1',h:'Getting <em>started</em>',p:'Your body is adjusting to the formula. Some women feel mild bloating in the first few days, which usually settles on its own.',sup:['Your free 1:1 consultation','A personal plan set up in the app','Daily capsule reminders'],note:'Join the WhatsApp community and introduce yourself.'},
+ {t:'Month 1',h:'Hormonal <em>reset</em>',p:'Energy levels start to lift and bloating eases. Your cycle may begin to regulate.',sup:['Week 4 check-in with your nutritionist','Meal suggestions adjusted to you','Your first cycle patterns in the app'],note:'Stay consistent. This is when the habit forms.'},
+ {t:'Month 2',h:'Visible <em>changes</em>',p:'Acne, mood swings and sugar cravings start to improve. Digestion and metabolism feel more stable.',sup:['Symptom trends tracked over time','Nutrition tips for each cycle phase','Progress shared with the community'],note:'This is when most women start to notice a difference.'},
+ {t:'Month 3',h:'Greater <em>balance</em>',p:'More regular cycles, less hair fall and clearer skin. Managing your weight starts to feel easier.',sup:['Week 10 review consultation','Your 90-day progress report','A plan for the months ahead'],note:'Most women see meaningful change between weeks 8 and 12.'},
+ {t:'Month 6',h:'Long-term <em>stability</em>',p:'Steady energy and better hormonal balance, especially with consistent lifestyle habits.',sup:['Monthly check-ins on the 6-month plan','Healthy habits that feel automatic','Support for newer community members'],note:'Many women continue with CysterCare. Others taper off once they feel steady.'}
+];
+const stops=document.querySelectorAll('.stop'),panel=document.getElementById('panel');
+function setJ(s){stops.forEach((b,k)=>{b.classList.toggle('on',k===s);b.classList.toggle('done',k<s)});const j=J[s];
+ panel.innerHTML=`<div class="jcard big"><small>${j.t} · What you may notice</small><h4>${j.h}</h4><p>${j.p}</p></div><div class="jcard"><small>How we support you</small><ul>${j.sup.map(x=>`<li>💗 ${x}</li>`).join('')}</ul></div><div class="jcard"><small>💡 Good to know</small><h4 style="font-size:26px">${j.note}</h4></div>`}
+stops.forEach(b=>b.onclick=()=>setJ(+b.dataset.s));setJ(0);
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+document.querySelectorAll('.story video').forEach(v=>{const s=v.closest('.story');s.addEventListener('mouseenter',()=>v.play().catch(()=>{}));s.addEventListener('mouseleave',()=>v.pause())});
+</script>
+</body>
+</html>
