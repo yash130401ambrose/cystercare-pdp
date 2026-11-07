@@ -314,6 +314,21 @@ em{font-style:normal}
 .free-of span{padding:15px 8px;border-bottom:0}
 .free-of span:last-child{border-right:0}
 
+/* INGREDIENT CAROUSEL */
+.icarousel{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 32px 6px max(32px,calc((100vw - 1320px)/2 + 32px));scroll-padding-left:max(32px,calc((100vw - 1320px)/2 + 32px));scrollbar-width:none;scroll-behavior:smooth}
+.icarousel::-webkit-scrollbar{display:none}
+.icard{flex:0 0 280px;scroll-snap-align:start}
+.icard .ph{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:4/5;background:var(--blush)}
+.icard img{width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.2,.8,.2,1)}
+.icard:hover img{transform:scale(1.05)}
+.icard .tg{position:absolute;top:12px;left:12px;font-size:12px;font-weight:500;background:rgba(255,255,255,.92);color:var(--ink);border-radius:999px;padding:5px 11px}
+.icard .no{position:absolute;bottom:12px;right:14px;font-size:13px;color:#fff;font-weight:500;text-shadow:0 1px 6px rgba(0,0,0,.4)}
+.icard h4{font-size:22px;font-weight:500;margin:16px 0 4px}
+.icard p{font-size:14.5px;color:var(--muted)}
+.hs-ctrl.light button{border-color:var(--line);color:var(--ink)}
+.hs-ctrl.light button:hover{background:var(--ink);color:#fff}
+#science .free-of{margin-top:40px}
+
 /* DOCTOR */
 .doc{position:relative;min-height:620px;border-radius:28px;overflow:hidden;margin:0 16px}
 .doc img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
@@ -337,7 +352,7 @@ em{font-style:normal}
 .stop.on{background:var(--pink);color:var(--plum)}
 .stop.on .e{background:#fff;transform:scale(1.08)}
 
-.panel{display:grid;grid-template-columns:1.1fr 1fr 1fr;margin-top:12px;gap:8px}
+.panel{display:grid;grid-template-columns:1fr;margin-top:12px;max-width:760px}
 .jcard{padding:30px;min-height:250px;background:rgba(255,255,255,.05);border-radius:18px}
 
 .jcard small{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.5)}
@@ -514,6 +529,8 @@ footer input{width:100%;background:transparent;border:1px solid var(--line-d);bo
   footer .g > div{padding-left:0}
 }
 @media (max-width:720px){
+  .icarousel{padding:0 16px 6px;scroll-padding-left:16px}
+  .icard{flex-basis:240px}
   .wrap{padding:0 16px}
   .guides::before{width:calc(100% - 32px)}
   .sec{padding:80px 0}
@@ -521,8 +538,6 @@ footer input{width:100%;background:transparent;border:1px solid var(--line-d);bo
   .navbar nav{display:none}
   .hero{padding-top:18px}
   .label{font-size:11px}
-  .label span:last-child,.label .sp{display:none}
-  .label span:nth-last-child(3){border-right:0}
   .benefits{grid-template-columns:1fr}
   .bun{grid-template-columns:1fr 1fr}
   .bun div:nth-child(2){border-right:0}
@@ -581,7 +596,7 @@ footer input{width:100%;background:transparent;border:1px solid var(--line-d);bo
 
 <div class="navbar"><div class="in">
   <a href="#"><img src="https://happycysters.com/cdn/shop/files/HappyCysters.png?height=80" alt="happy cysters"></a>
-  <nav><a href="#">Shop</a><a href="#app">The App</a><a href="#science">Science</a><a href="#stories">Stories</a><a href="#">Community</a></nav>
+  <nav><a href="#">Shop</a><a href="#app">The App</a><a href="#science">Science</a><a href="#reviews">Reviews</a><a href="#">Community</a></nav>
   <div class="r"><a href="#">Account</a><a href="#buy" class="cartc">Cart 0</a></div>
 </div></div>
 
@@ -605,7 +620,7 @@ footer input{width:100%;background:transparent;border:1px solid var(--line-d);bo
       <div class="top"><span><span class="stars">★★★★★</span>&nbsp; 4.8 stars, 1,200+ women</span><a href="#reviews" style="text-decoration:underline">Read reviews</a></div>
       <h1>CysterCare</h1>
       <p class="sub">Daily capsules for PCOS and PCOD support</p>
-      <p class="desc">Irregular cycles, acne and stubborn weight aren't random. They're often signs of insulin resistance and hormonal imbalance. CysterCare pairs Myo and D-Chiro Inositol in the clinically studied 40:1 ratio with Shatavari, Chasteberry and 7 more actives, so you can work on the root cause, not just the symptoms.</p>
+      <p class="desc">Myo and D-Chiro Inositol in the clinically studied 40:1 ratio, with Shatavari, Chasteberry and 7 more actives. Non-hormonal and 100% vegetarian.</p>
 
       <div class="cells benefits">
         <div><b>🩸</b><span>Regulates menstrual cycles</span></div>
@@ -614,35 +629,33 @@ footer input{width:100%;background:transparent;border:1px solid var(--line-d);bo
         <div><b>✨</b><span>Helps with acne and hair fall</span></div>
       </div>
 
-      <div class="bundle-h"><b>Included with every order</b><span>At no extra cost</span></div>
+      <div class="bundle-h"><b>Included free with every order</b></div>
       <div class="cells bun">
         <div><b>💊 CysterCare</b><small>60 veg capsules</small></div>
-        <div><b>🩺 1:1 consultation</b><small>PCOS nutritionist</small><span class="val">Worth ₹999</span></div>
-        <div><b>📱 Cyster Coach</b><small>AI app access</small><span class="val">Available 24/7</span></div>
-        <div><b>💬 Community</b><small>Private WhatsApp</small><span class="val">1,200+ members</span></div>
+        <div><b>🩺 Free consult</b><small>PCOS nutritionist</small></div>
+        <div><b>📱 AI coach</b><small>Happy Cysters app</small></div>
+        <div><b>💬 Community</b><small>Private WhatsApp</small></div>
       </div>
 
-      <div class="plan-h"><b>Choose your plan</b><span>Most women notice a change in 8 to 12 weeks</span></div>
+      <div class="plan-h"><b>Choose your plan</b><span>Results build over 8 to 12 weeks</span></div>
       <div class="plans" id="plans">
         <div class="plan" data-n="1 Month" data-p="1,299" data-m="1,799" data-perk="Includes one nutritionist consultation and app access.">
-          <small>Starter</small><h5>1 Month</h5><span class="p">₹1,299</span><s>₹1,799</s><div class="save">Save ₹500</div>
+          <h5>1 Month</h5><span class="p">₹1,299</span><s>₹1,799</s><div class="save">Save ₹500</div>
         </div>
         <div class="plan on" data-n="3 Months" data-p="3,897" data-m="5,397" data-perk="<b>Recommended.</b> Three consultations (start, week 4 and week 10) plus 3 months of app Premium.">
-          <span class="chip">Recommended</span><small>Full cycle</small><h5>3 Months</h5><span class="p">₹3,897</span><s>₹5,397</s><div class="save">Save ₹1,500</div>
+          <span class="chip">Recommended</span><h5>3 Months</h5><span class="p">₹3,897</span><s>₹5,397</s><div class="save">Save ₹1,500</div>
         </div>
         <div class="plan" data-n="6 Months" data-p="7,794" data-m="10,794" data-perk="<b>Best value.</b> Monthly consultations, 6 months of app Premium and priority support.">
-          <span class="chip b">Best value</span><small>Long term</small><h5>6 Months</h5><span class="p">₹7,794</span><s>₹10,794</s><div class="save">Save ₹3,000</div>
+          <span class="chip b">Best value</span><h5>6 Months</h5><span class="p">₹7,794</span><s>₹10,794</s><div class="save">Save ₹3,000</div>
         </div>
       </div>
-      <div class="perks" id="perks">✦ <span><b>Recommended.</b> Three consultations (start, week 4 and week 10) plus 3 months of app Premium.</span></div>
-      <div class="cta"><button class="btn btn-dark" id="atc">Add to cart · ₹3,897 <span class="arrow">→</span></button></div>
+            <div class="cta"><button class="btn btn-dark" id="atc">Add to cart · ₹3,897 <span class="arrow">→</span></button></div>
       <div class="cells assure">
         <div><b>🚚 Free</b>shipping</div><div><b>💵 COD</b>available</div><div><b>🔄 30-day</b>money back</div><div><b>📦 1 to 2 day</b>dispatch</div>
       </div>
 
       <div class="acc-list">
         <details><summary>How to use</summary><p>Take 2 capsules a day with water, ideally with a meal. Pick a time you'll remember and the app will remind you. If you're pregnant, nursing or on medication, check with your doctor first.</p></details>
-        <details><summary>Ingredients</summary><p>Myo-Inositol, D-Chiro-Inositol (40:1), Shatavari, Chasteberry, Moringa, Amla, Zinc Bisglycinate, Vitamin D3, L-Methylfolate and Black Pepper. Plant-powered, gluten-free, lactose-free, preservative-free and 100% vegetarian.</p></details>
         <details><summary>Shipping and returns</summary><p>Orders ship within 1 to 2 business days. Delivery takes 3 to 5 days in metro cities and 5 to 7 days elsewhere. Free shipping on prepaid orders, COD across India, and a 30-day money-back guarantee.</p></details>
       </div>
     </div>
@@ -661,27 +674,25 @@ footer input{width:100%;background:transparent;border:1px solid var(--line-d);bo
     <div class="eco-grid">
       <div class="eco-left rv">
         <h2 class="h-l">Support that goes <span class="serif acc">beyond</span> the bottle.</h2>
-        <p class="lead">Managing PCOS takes more than a capsule. Every order includes expert guidance, an AI coach and a community, so you never have to figure it out alone.</p>
-        <div class="cells count"><div><b>4</b>layers of support</div><div><b>₹0</b>extra cost</div><div><b>24/7</b>AI coach</div></div>
+        <p class="lead">Every order comes with expert guidance, an AI coach and a community.</p>
       </div>
       <div class="stack">
         <article class="card-s">
-          <div class="l"><div><span class="n">💊 The formula</span><h3>Ten actives. <span class="serif acc">No hormones.</span></h3><p>Built around the 40:1 inositol ratio and supported by Shatavari, Chasteberry, zinc and essential vitamins.</p></div><a href="#science" class="go">See the ingredients →</a></div>
+          <div class="l"><div><span class="n">💊 The formula</span><h3>Ten actives. <span class="serif acc">No hormones.</span></h3><p>Built around the 40:1 inositol ratio.</p></div><a href="#science" class="go">See the ingredients →</a></div>
           <div class="vis"><img src="https://happycysters.com/cdn/shop/files/cystercare-pcos-supplement-for-women-myo-inositol-d-chiro-inositol-with-shatavari-8440391.png?width=800" alt=""></div>
         </article>
         <article class="card-s">
-          <div class="l"><div><span class="n">🩺 The expert</span><h3>A free 1:1 with a <span class="serif" style="color:var(--pink)">PCOS nutritionist.</span></h3><p>Share your symptoms, medication and routine. Get a plan that works with Indian food and your everyday schedule.</p></div><a href="#" class="go">Book a slot →</a></div>
+          <div class="l"><div><span class="n">🩺 The expert</span><h3>A free 1:1 with a <span class="serif" style="color:var(--pink)">PCOS nutritionist.</span></h3><p>A personal plan built around Indian food and your routine.</p></div><a href="#" class="go">Book a slot →</a></div>
           <div class="slot"><span class="d">Pick a time · Tomorrow</span><div class="times"><span>10:00 am</span><span class="on">11:30 am</span><span>4:00 pm</span><span>7:30 pm</span></div><span class="f">15 minutes over video or phone. Free with every order.</span></div>
         </article>
         <article class="card-s">
-          <div class="l"><div><span class="n">📱 The coach</span><h3>An AI nutritionist and <span class="serif" style="color:var(--plum)">life coach.</span></h3><p>Track meals, cycles and symptoms in one place, and get clear next steps based on your own data.</p></div><a href="#app" class="go">Explore the app →</a></div>
+          <div class="l"><div><span class="n">📱 The coach</span><h3>An AI nutritionist and <span class="serif" style="color:var(--plum)">life coach.</span></h3><p>Track meals, cycles and symptoms. Get clear next steps.</p></div><a href="#app" class="go">Explore the app →</a></div>
           <div class="vis"><img src="https://happycysters.com/cdn/shop/files/Gemini_Generated_Image_t4o778t4o778t4o7_1.png?width=800" alt=""></div>
         </article>
         <article class="card-s">
-          <div class="l"><div><span class="n">💬 The community</span><h3>A community that <span class="serif acc">understands.</span></h3><p>Join a private WhatsApp group of women managing PCOS. Ask questions, share progress and learn from each other.</p></div><a href="#" class="go">Join the community →</a></div>
+          <div class="l"><div><span class="n">💬 The community</span><h3>A community that <span class="serif acc">understands.</span></h3><p>A private WhatsApp group of women who get it.</p></div><a href="#" class="go">Join the community →</a></div>
           <div class="wa">
             <div><small>Sneha · Mumbai</small>Does anyone else get chin acne right before their period?</div>
-            <div><small>Ritika · Delhi</small>Yes! Cutting back on late-night chai helped me a lot.</div>
             <div class="me">Starting CysterCare today 💛</div>
             <div><small>Aisha · Nutritionist</small>Welcome! Ask us anything here, any time.</div>
           </div>
@@ -691,37 +702,18 @@ footer input{width:100%;background:transparent;border:1px solid var(--line-d);bo
   </div>
 </section>
 
-<!-- ================= ROOT CAUSES ================= -->
-<section class="sec dark guides">
-  <div class="wrap">
-    <div class="label rv"><span>🧬</span><span>Understanding PCOS</span><span class="sp"></span><span>nourish <i>🌸</i> nurture <i>🌸</i> navigate</span></div>
-    <div class="row-head rv">
-      <h2 class="h-l" style="max-width:760px">Five root causes. <span class="serif acc">One approach.</span></h2>
-      <div class="hs-ctrl"><button id="cl" aria-label="Scroll left">←</button><button id="cr" aria-label="Scroll right">→</button></div>
-    </div>
-  </div>
-  <div class="hscroll" id="hs">
-    <div class="cause"><div class="hd"><span class="em">🍬</span><span>Insulin resistance</span></div><div class="bd"><h4>Blood sugar swings</h4><p>When your cells stop responding well to insulin, your body makes more of it. That can raise androgen levels and lead to cravings and weight gain.</p></div><div class="helps"><small>What helps</small><div><span>Myo-Inositol</span><span>D-Chiro-Inositol</span><span>Meal guidance</span></div></div></div>
-    <div class="cause"><div class="hd"><span class="em">🧬</span><span>Androgen excess</span></div><div class="bd"><h4>Hormonal imbalance</h4><p>Higher androgen levels can show up as acne, facial hair and thinning hair. It's common, and it can be managed.</p></div><div class="helps"><small>What helps</small><div><span>Chasteberry</span><span>Shatavari</span><span>Zinc</span></div></div></div>
-    <div class="cause"><div class="hd"><span class="em">🌙</span><span>Irregular ovulation</span></div><div class="bd"><h4>Unpredictable cycles</h4><p>Without regular ovulation, periods can come late, arrive irregularly or skip months altogether.</p></div><div class="helps"><small>What helps</small><div><span>40:1 Inositols</span><span>Shatavari</span><span>Cycle tracking</span></div></div></div>
-    <div class="cause"><div class="hd"><span class="em">🔥</span><span>Inflammation</span></div><div class="bd"><h4>Chronic low-grade inflammation</h4><p>Ongoing inflammation is linked to fatigue, bloating and worsening insulin resistance.</p></div><div class="helps"><small>What helps</small><div><span>Amla</span><span>Moringa</span><span>Black Pepper</span></div></div></div>
-    <div class="cause"><div class="hd"><span class="em">🔋</span><span>Nutrients and stress</span></div><div class="bd"><h4>Running on empty</h4><p>Low vitamin D and folate are common in women with PCOS, and stress can make every symptom feel worse.</p></div><div class="helps"><small>What helps</small><div><span>Vitamin D3</span><span>L-Methylfolate</span><span>Coach check-ins</span></div></div></div>
-    <div style="flex:0 0 16px"></div>
-  </div>
-</section>
-
 <!-- ================= APP ================= -->
 <section class="sec guides" id="app" style="background:var(--tint)">
   <div class="wrap">
     <div class="label rv" style="background:var(--tint)"><span>📱</span><span>The Happy Cysters app</span><span class="sp"></span><span>free with every order</span></div>
     <div class="row-head rv">
       <h2 class="h-l app-head">Your nutritionist and coach, <span class="serif acc">always on.</span></h2>
-      <p class="lead" style="max-width:400px">Cyster Coach learns your cycle, meals and habits, and helps you make small changes that add up over time.</p>
+      <p class="lead" style="max-width:400px">Cyster Coach learns your cycle, meals and habits. Free with every order.</p>
     </div>
     <div class="app-grid">
       <div class="tabs">
-        <button class="tab on" data-v="0"><small>💬</small><h5>Ask Cyster Coach</h5><p>Get answers to everyday PCOS questions, from cravings to lab reports, at any time of day.</p></button>
-        <button class="tab" data-v="1"><small>📸</small><h5>Snap your meals</h5><p>Log meals with a photo and get balanced swaps for the Indian food you already eat.</p></button>
+        <button class="tab on" data-v="0"><small>💬</small><h5>Ask Cyster Coach</h5><p>Answers to everyday PCOS questions, any time.</p></button>
+        <button class="tab" data-v="1"><small>📸</small><h5>Snap your meals</h5><p>Photo-log meals and get simple swaps.</p></button>
       </div>
       <div class="phone rv"><div class="scr"><div class="notch"></div>
         <div class="view on">
@@ -764,8 +756,8 @@ footer input{width:100%;background:transparent;border:1px solid var(--line-d);bo
         </div>
       </div></div>
       <div class="tabs">
-        <button class="tab" data-v="2"><small>🗓️</small><h5>Track your cycle</h5><p>Log periods, symptoms and mood. The app spots patterns for you over time.</p></button>
-        <button class="tab" data-v="3"><small>✅</small><h5>Build better habits</h5><p>Capsule reminders, streaks and daily check-ins that help you stay consistent.</p></button>
+        <button class="tab" data-v="2"><small>🗓️</small><h5>Track your cycle</h5><p>Periods, symptoms and mood in one place.</p></button>
+        <button class="tab" data-v="3"><small>✅</small><h5>Build better habits</h5><p>Reminders and streaks to stay consistent.</p></button>
       </div>
     </div>
     <div class="stores">
@@ -776,27 +768,28 @@ footer input{width:100%;background:transparent;border:1px solid var(--line-d);bo
 </section>
 
 <!-- ================= INGREDIENTS ================= -->
-<section class="sec guides" id="science">
+<section class="sec" id="science">
   <div class="wrap">
-    <div class="label rv"><span>🌿</span><span>Ingredients</span><span class="sp"></span><span>10 precision ingredients</span></div>
-    <div class="ratio-band rv">
-      <div class="num">40<em>:1</em></div>
-      <div><h3>Proven science. <span class="serif acc">Thoughtful ingredients.</span></h3><p>Healthy ovaries keep Myo-Inositol and D-Chiro-Inositol at roughly 40:1. In PCOS, that balance is often disrupted. CysterCare restores it, then adds botanicals and micronutrients for complete support.</p></div>
+    <div class="label rv"><span>🌿</span><span>Ingredients</span></div>
+    <div class="row-head rv">
+      <h2 class="h-l">10 ingredients. <span class="serif acc">One daily capsule.</span></h2>
+      <div class="hs-ctrl light"><button id="il" aria-label="Previous ingredient">←</button><button id="ir" aria-label="Next ingredient">→</button></div>
     </div>
-    <div class="bento">
-      <div class="ing feat rv"><img src="https://happycysters.com/cdn/shop/files/hc_34e3991e-3cb1-403f-bee9-2708e328b73e.png?width=1200" alt=""><span class="tg">🔬 Clinical actives</span>
-        <div class="bt"><div class="big">40<em>:1</em></div><h4>Myo + D-Chiro Inositol</h4><p>The core of the formula. Together they support insulin sensitivity, ovulation and healthy ovarian function.</p></div></div>
-      <div class="ing rv"><img src="https://happycysters.com/cdn/shop/files/b52acca55c62fa089802ed0c95d10d91.jpg?width=700" alt=""><span class="tg">🌿 Ayurvedic</span><div class="bt"><h4>Shatavari</h4><p>Traditionally used to support women's hormonal health and cycle balance.</p></div></div>
-      <div class="ing rv"><img src="https://happycysters.com/cdn/shop/files/af516ad866fb4375782116f57f90a83f.jpg?width=700" alt=""><span class="tg">🍃 Botanical</span><div class="bt"><h4>Chasteberry</h4><p>Helps support menstrual regularity and a steady hormonal rhythm.</p></div></div>
-      <div class="ing rv"><img src="https://happycysters.com/cdn/shop/files/fe3ab5b1f83db75ae2dec4900b318d2e.jpg?width=700" alt=""><span class="tg">🍃 Botanical</span><div class="bt"><h4>Moringa</h4><p>A nutrient-rich leaf that supports overall energy and vitality.</p></div></div>
-      <div class="ing rv"><img src="https://happycysters.com/cdn/shop/files/0817fd257aa5f4a71c48dddbefe44712.jpg?width=700" alt=""><span class="tg">🌿 Ayurvedic</span><div class="bt"><h4>Amla</h4><p>A natural source of antioxidants that supports skin and everyday health.</p></div></div>
-      <div class="ing rv"><img src="https://happycysters.com/cdn/shop/files/43e579189d9502a2f96861d0e1714656.jpg?width=700" alt=""><span class="tg">⚡ Mineral</span><div class="bt"><h4>Zinc Bisglycinate</h4><p>A highly absorbable form of zinc for skin, hair and hormone balance.</p></div></div>
-      <div class="ing rv"><img src="https://happycysters.com/cdn/shop/files/5f9ac1712ffa7cd9c48008e2821fd68f.jpg?width=700" alt=""><span class="tg">☀️ Vitamin</span><div class="bt"><h4>Vitamin D3</h4><p>Supports hormonal balance and immune health.</p></div></div>
-      <div class="ing rv"><img src="https://happycysters.com/cdn/shop/files/ad8e378eb81d42ff08fb1cfa48c8064e.jpg?width=700" alt=""><span class="tg">☀️ Vitamin</span><div class="bt"><h4>L-Methylfolate</h4><p>The active form of folate, supporting mood and cell function.</p></div></div>
-      <div class="ing rv"><img src="https://happycysters.com/cdn/shop/files/59f3d63a201f045063e6f2086729b4c5.jpg?width=700" alt=""><span class="tg">🌶️ Enhancer</span><div class="bt"><h4>Black Pepper</h4><p>Improves absorption, so your body makes better use of every ingredient.</p></div></div>
-    </div>
-    <div class="cells free-of rv"><span>🚫 Non-hormonal</span><span>🌱 Plant-powered</span><span>🌾 Gluten-free</span><span>🥛 Lactose-free</span><span>🧪 No preservatives</span><span>🥬 100% vegetarian</span></div>
   </div>
+  <div class="icarousel" id="ic">
+    <article class="icard"><div class="ph"><img src="https://happycysters.com/cdn/shop/files/hc_34e3991e-3cb1-403f-bee9-2708e328b73e.png?width=700" alt="Myo-Inositol"><span class="tg">🔬 Clinical</span><span class="no">01</span></div><h4>Myo-Inositol</h4><p>Supports insulin sensitivity and ovarian health.</p></article>
+    <article class="icard"><div class="ph"><img src="https://happycysters.com/cdn/shop/files/9c22f78195a6264a299f096a31e722a1.jpg?width=700" alt="D-Chiro-Inositol"><span class="tg">🔬 Clinical</span><span class="no">02</span></div><h4>D-Chiro-Inositol</h4><p>Works with Myo-Inositol for hormonal balance.</p></article>
+    <article class="icard"><div class="ph"><img src="https://happycysters.com/cdn/shop/files/b52acca55c62fa089802ed0c95d10d91.jpg?width=700" alt="Shatavari"><span class="tg">🌿 Ayurvedic</span><span class="no">03</span></div><h4>Shatavari</h4><p>Supports hormonal health and cycle balance.</p></article>
+    <article class="icard"><div class="ph"><img src="https://happycysters.com/cdn/shop/files/af516ad866fb4375782116f57f90a83f.jpg?width=700" alt="Chasteberry"><span class="tg">🍃 Botanical</span><span class="no">04</span></div><h4>Chasteberry</h4><p>Helps keep your cycle regular.</p></article>
+    <article class="icard"><div class="ph"><img src="https://happycysters.com/cdn/shop/files/fe3ab5b1f83db75ae2dec4900b318d2e.jpg?width=700" alt="Moringa"><span class="tg">🍃 Botanical</span><span class="no">05</span></div><h4>Moringa</h4><p>Nutrient-rich support for daily energy.</p></article>
+    <article class="icard"><div class="ph"><img src="https://happycysters.com/cdn/shop/files/0817fd257aa5f4a71c48dddbefe44712.jpg?width=700" alt="Amla"><span class="tg">🌿 Ayurvedic</span><span class="no">06</span></div><h4>Amla</h4><p>Antioxidants for skin and overall health.</p></article>
+    <article class="icard"><div class="ph"><img src="https://happycysters.com/cdn/shop/files/43e579189d9502a2f96861d0e1714656.jpg?width=700" alt="Zinc Bisglycinate"><span class="tg">⚡ Mineral</span><span class="no">07</span></div><h4>Zinc Bisglycinate</h4><p>For skin, hair and hormone balance.</p></article>
+    <article class="icard"><div class="ph"><img src="https://happycysters.com/cdn/shop/files/5f9ac1712ffa7cd9c48008e2821fd68f.jpg?width=700" alt="Vitamin D3"><span class="tg">☀️ Vitamin</span><span class="no">08</span></div><h4>Vitamin D3</h4><p>Supports hormones and immunity.</p></article>
+    <article class="icard"><div class="ph"><img src="https://happycysters.com/cdn/shop/files/ad8e378eb81d42ff08fb1cfa48c8064e.jpg?width=700" alt="L-Methylfolate"><span class="tg">☀️ Vitamin</span><span class="no">09</span></div><h4>L-Methylfolate</h4><p>Active folate for mood and cell health.</p></article>
+    <article class="icard"><div class="ph"><img src="https://happycysters.com/cdn/shop/files/59f3d63a201f045063e6f2086729b4c5.jpg?width=700" alt="Black Pepper"><span class="tg">🌶️ Enhancer</span><span class="no">10</span></div><h4>Black Pepper</h4><p>Helps your body absorb every ingredient.</p></article>
+    <div style="flex:0 0 8px"></div>
+  </div>
+  <div class="wrap"><div class="cells free-of rv"><span>🚫 Non-hormonal</span><span>🌱 Plant-powered</span><span>🌾 Gluten-free</span><span>🥛 Lactose-free</span><span>🧪 No preservatives</span><span>🥬 100% vegetarian</span></div></div>
 </section>
 
 <!-- ================= DOCTOR ================= -->
@@ -806,7 +799,7 @@ footer input{width:100%;background:transparent;border:1px solid var(--line-d);bo
     <div>
       <div class="k">Formulated by doctors, not trends</div>
       <blockquote>"I created CysterCare for the women I met in my clinic every day. Many had <em>tried everything</em> and still felt unheard."</blockquote>
-      <p style="color:#4a424a;font-size:15px">With decades of experience in clinical nutrition, Dt. Jyoti Chabria designed CysterCare around what women with PCOS actually need: the right nutrients, in the right dose, at the right time.</p>
+      <p style="color:#4a424a;font-size:15px">Designed by Dt. Jyoti Chabria with decades of clinical nutrition experience.</p>
     </div>
     <div class="foot">
       <div><div class="sig">Jyoti Chabria</div><small style="color:var(--muted)">Founder and formulator</small></div>
@@ -821,7 +814,7 @@ footer input{width:100%;background:transparent;border:1px solid var(--line-d);bo
     <div class="label rv"><span>⏳</span><span>What to expect</span><span class="sp"></span><span>results may vary</span></div>
     <div class="row-head rv">
       <h2 class="h-l">Progress, <span class="serif acc">over time.</span></h2>
-      <p class="lead" style="max-width:400px">Select a stage to see what you may notice and how we support you along the way.</p>
+      <p class="lead" style="max-width:400px">Tap a stage to see what to expect.</p>
     </div>
     <div class="rv">
       <div class="stops" id="stops">
@@ -833,47 +826,6 @@ footer input{width:100%;background:transparent;border:1px solid var(--line-d);bo
       </div>
       <div class="panel" id="panel"></div>
       <p class="note">*Individual results may vary. This timeline is illustrative, based on what women in our community commonly report, and is not a guarantee of outcomes.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ================= STATS ================= -->
-<section class="sec guides">
-  <div class="wrap">
-    <div class="label rv"><span>📊</span><span>Real results</span><span class="sp"></span><span class="ph-tag" style="opacity:.8">Placeholder survey data</span></div>
-    <div class="row-head rv"><h2 class="h-l">Real women. <span class="serif acc">Real results.</span></h2><p class="lead" style="max-width:380px">What our community reported after 12 weeks of CysterCare, consultations and the app.</p></div>
-    <div class="cells stats rv">
-      <div class="stat"><b>84<sup>%</sup></b><p>noticed more regular cycles by month three</p></div>
-      <div class="stat"><b>78<sup>%</sup></b><p>had fewer sugar cravings and steadier energy</p></div>
-      <div class="stat"><b>71<sup>%</sup></b><p>saw clearer skin and less hair fall</p></div>
-      <div class="stat"><b>92<sup>%</sup></b><p>said the consultations and app made it easier to stay consistent</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= STORIES (placeholder) ================= -->
-<section class="sec guides" id="stories" style="padding-top:0">
-  <div class="wrap">
-    <div class="row-head rv"><h2 class="h-l">Their stories, <span class="serif acc">in their words.</span></h2><a href="#" class="btn btn-line">View all stories <span class="arrow">→</span></a></div>
-    <div class="stories">
-      <article class="story rv">
-        <video src="https://happycysters.com/cdn/shop/videos/c/vp/0701f0a48f6d49bca10dff572f195992/0701f0a48f6d49bca10dff572f195992.HD-1080p-7.2Mbps-83859054.mp4#t=1" muted playsinline loop preload="metadata"></video>
-        <div class="bd">
-          <div class="who"><span>Priya, 27 · Pune</span><span class="ph-tag">Placeholder</span></div>
-          <q>"My cycle went from over 60 days to <em>34.</em> I finally feel like my body is working with me."</q>
-          <div class="bfa"><div><span>Before</span><p>Irregular periods, evening sugar cravings and three different diets in a year.</p></div><div><span>Her plan</span><p>CysterCare daily, a meal plan from her consultation and walks after meals.</p></div></div>
-          <div class="mt"><div><b>34 days</b><small>cycle length</small></div><div><b>12 wks</b><small>on the plan</small></div><div><b>91%</b><small>days logged</small></div></div>
-        </div>
-      </article>
-      <article class="story rv">
-        <video src="https://happycysters.com/cdn/shop/videos/c/vp/b4fa9015a52844dc803655ba9ba2ced4/b4fa9015a52844dc803655ba9ba2ced4.HD-1080p-7.2Mbps-83859052.mp4#t=1" muted playsinline loop preload="metadata"></video>
-        <div class="bd">
-          <div class="who"><span>Ananya, 31 · Bengaluru</span><span class="ph-tag">Placeholder</span></div>
-          <q>"I didn't know lean PCOS was a thing. <em>The app explained it</em> better than anyone had."</q>
-          <div class="bfa"><div><span>Before</span><p>Cystic acne along the jaw, hair fall and constant fatigue.</p></div><div><span>Her plan</span><p>CysterCare, zinc-rich food swaps, and sleep and stress check-ins with Cyster Coach.</p></div></div>
-          <div class="mt"><div><b>Clearer</b><small>skin by week 10</small></div><div><b>3</b><small>consultations</small></div><div><b>8 hrs</b><small>average sleep</small></div></div>
-        </div>
-      </article>
     </div>
   </div>
 </section>
@@ -895,8 +847,6 @@ footer input{width:100%;background:transparent;border:1px solid var(--line-d);bo
         <div class="rev"><span class="stars">★★★★★</span><p>I wanted a supplement made specifically for PCOS. The free consultation sealed it. She even checked the timing with my metformin.</p><div class="by"><b>Payal S.</b><span class="v">✓ Verified</span></div></div>
         <div class="rev"><span class="stars">★★★★★</span><p>Really easy to add to my routine. Two capsules a day and that's it.</p><div class="by"><b>Neha</b><span class="v">✓ Verified</span></div></div>
         <div class="rev"><span class="stars">★★★★★</span><p>My routine is much more consistent now. Honestly, the app reminders are half the reason.</p><div class="by"><b>Pooja T.</b><span class="v">✓ Verified</span></div></div>
-        <div class="rev"><span class="stars">★★★★★</span><p>Clean ingredients and an easy daily routine. I'll be ordering again.</p><div class="by"><b>Mahima T.</b><span class="v">✓ Verified</span></div></div>
-        <div class="rev"><span class="stars">★★★★★</span><p>The capsules are small and easy to swallow. Really happy with the quality and packaging.</p><div class="by"><b>Garima M.</b><span class="v">✓ Verified</span></div></div>
       </div>
     </div>
   </div>
@@ -906,7 +856,7 @@ footer input{width:100%;background:transparent;border:1px solid var(--line-d);bo
 <section class="sec guides">
   <div class="wrap">
     <div class="label rv"><span>✨</span><span>Why CysterCare</span><span class="sp"></span><span>side by side</span></div>
-    <div class="row-head rv"><h2 class="h-l">Why CysterCare <span class="serif acc">is different.</span></h2><p class="lead" style="max-width:420px">Most PCOS supplements stop at the capsule. Here's how we compare with other inositol brands, and with managing PCOS on your own.</p></div>
+    <div class="row-head rv"><h2 class="h-l">Why CysterCare <span class="serif acc">is different.</span></h2><p class="lead" style="max-width:420px">Most PCOS supplements stop at the capsule. We don't.</p></div>
     <div class="cmp-w rv">
       <table class="cmp">
         <thead><tr><th style="color:var(--muted);font-size:13px;font-weight:400">What you get</th><th class="us">CysterCare<small>Capsules + consult + app</small></th><th>Inositol-only supplements<small>Capsules or powder only</small></th><th>Managing it on your own<small>Diet charts, Google and forums</small></th></tr></thead>
@@ -915,9 +865,7 @@ footer input{width:100%;background:transparent;border:1px solid var(--line-d);bo
           <tr><td>Shatavari, Chasteberry and 7 more actives</td><td class="us y">●</td><td class="n">○</td><td class="n">○</td></tr>
           <tr><td>Free 1:1 nutritionist consultation</td><td class="us y">●</td><td class="n">○</td><td class="n">○</td></tr>
           <tr><td>AI nutritionist and life coach</td><td class="us y">●</td><td class="n">○</td><td class="n">○</td></tr>
-          <tr><td>Cycle, meal and symptom tracking</td><td class="us y">●</td><td class="n">○</td><td class="n">Manual notes</td></tr>
           <tr><td>Community of 1,200+ women</td><td class="us y">●</td><td class="n">○</td><td class="n">Online forums</td></tr>
-          <tr><td>Non-hormonal and 100% vegetarian</td><td class="us y">●</td><td class="n">Varies</td><td class="n">○</td></tr>
         </tbody>
       </table>
     </div>
@@ -937,15 +885,13 @@ footer input{width:100%;background:transparent;border:1px solid var(--line-d);bo
     <div class="faq">
       <div class="rv">
         <h2 class="h-l">Frequently asked <span class="serif acc">questions.</span></h2>
-        <p class="lead" style="margin-top:18px">Everything you need to know about CysterCare, the consultation and the app.</p>
+        
         <div class="helpbox"><div><h4>🤔 Not sure yet?</h4><p>Speak to a PCOS nutritionist before you buy. It's free, takes 15 minutes and there's no pressure.</p></div><div><a href="#" class="btn btn-mag">Book a free consultation <span class="arrow">→</span></a></div></div>
       </div>
       <div class="faq-list rv">
         <details open><summary>What's in CysterCare?</summary><p>Myo-Inositol and D-Chiro-Inositol in the 40:1 ratio used in PCOS research, plus Shatavari, Chasteberry, Moringa and Amla extracts, Zinc Bisglycinate, Vitamin D3, L-Methylfolate and Black Pepper. It's 100% vegetarian and free from gluten, lactose and preservatives.</p></details>
         <details><summary>Will it help with acne, facial hair, irregular periods or weight?</summary><p>CysterCare supports the main drivers behind these symptoms: insulin sensitivity and hormonal balance. Most women notice changes in their cycle and energy within 8 to 12 weeks, especially alongside good sleep, balanced meals and regular movement.</p></details>
-        <details><summary>Is it hormonal? Can I take it long term?</summary><p>No, it's non-hormonal. There are no synthetic hormones or steroids in the formula. It's designed for daily, long-term use and isn't habit-forming.</p></details>
         <details><summary>Can I take it with metformin or thyroid medication?</summary><p>Many women do, but inositol can interact with diabetes and thyroid medication, so timing matters. Book your free consultation and share what you take. If you're pregnant or nursing, please check with your doctor first.</p></details>
-        <details><summary>What's included in the consultation and the app?</summary><p>The consultation is a 1:1 session with a nutritionist who reviews your symptoms and creates a plan for you. The app helps you follow it, with Cyster Coach (our AI nutritionist and life coach), meal and cycle tracking, and capsule reminders.</p></details>
         <details><summary>How long does delivery take? Is COD available?</summary><p>Orders ship within 1 to 2 business days and arrive in 3 to 5 days in metro cities, or 5 to 7 days elsewhere. COD is available across India, shipping is free, and every order comes with a 30-day money-back guarantee.</p></details>
       </div>
     </div>
@@ -956,7 +902,7 @@ footer input{width:100%;background:transparent;border:1px solid var(--line-d);bo
 <section class="final dark rv">
   <div class="tagline">nourish <i>🌸</i> nurture <i>🌸</i> navigate</div>
   <h2 class="h-xl">One in five women has PCOS. <span class="serif acc">You don't have to manage it alone.</span></h2>
-  <p class="lead">Start with the capsules. Stay for the consultations, the coach and a community that understands.</p>
+  <p class="lead">Capsules, a nutritionist, an AI coach and a community. All in one order.</p>
   <div class="acts"><a href="#buy" class="btn btn-white">Start my 3-month plan <span class="arrow">→</span></a><a href="#" class="btn btn-line">Talk to a nutritionist</a></div>
   <div class="cells g"><span>🩺 Free consultation</span><span>📱 App included</span><span>💵 COD available</span><span>🔄 30-day guarantee</span></div>
 </section>
@@ -991,14 +937,14 @@ show(0);
 prev.onclick=()=>show(gi-1);next.onclick=()=>show(gi+1);
 document.querySelectorAll('.tile[data-i]').forEach(t=>t.onclick=()=>show(+t.dataset.i));
 
-const plans=document.querySelectorAll('.plan'),atc=document.getElementById('atc'),perks=document.getElementById('perks');
-plans.forEach(p=>p.onclick=()=>{plans.forEach(x=>x.classList.remove('on'));p.classList.add('on');atc.innerHTML=`Add to cart · ₹${p.dataset.p} <span class="arrow">→</span>`;perks.innerHTML='✦ <span>'+p.dataset.perk+'</span>';sbN.textContent=p.dataset.n;sbP.textContent=p.dataset.p;sbM.textContent=p.dataset.m});
+const plans=document.querySelectorAll('.plan'),atc=document.getElementById('atc');
+plans.forEach(p=>p.onclick=()=>{plans.forEach(x=>x.classList.remove('on'));p.classList.add('on');atc.innerHTML=`Add to cart · ₹${p.dataset.p} <span class="arrow">→</span>`;sbN.textContent=p.dataset.n;sbP.textContent=p.dataset.p;sbM.textContent=p.dataset.m});
 
 const sbar=document.getElementById('sbar');
 addEventListener('scroll',()=>{const b=atc.getBoundingClientRect().bottom;const f=document.querySelector('footer').getBoundingClientRect().top;sbar.classList.toggle('show',b<0&&f>innerHeight-40)},{passive:true});
 
-const hs=document.getElementById('hs');
-cl.onclick=()=>hs.scrollBy({left:-370,behavior:'smooth'});cr.onclick=()=>hs.scrollBy({left:370,behavior:'smooth'});
+const ic=document.getElementById('ic');
+il.onclick=()=>ic.scrollBy({left:-300});ir.onclick=()=>ic.scrollBy({left:300});
 
 const tabs=document.querySelectorAll('.tab'),views=document.querySelectorAll('.view');let tv=0,tt;
 function setTab(v){tv=v;tabs.forEach(t=>t.classList.toggle('on',+t.dataset.v===v));views.forEach((w,k)=>w.classList.toggle('on',k===v))}
@@ -1014,7 +960,7 @@ const J=[
 ];
 const stops=document.querySelectorAll('.stop'),panel=document.getElementById('panel');
 function setJ(s){stops.forEach((b,k)=>{b.classList.toggle('on',k===s);b.classList.toggle('done',k<s)});const j=J[s];
- panel.innerHTML=`<div class="jcard big"><small>${j.t} · What you may notice</small><h4>${j.h}</h4><p>${j.p}</p></div><div class="jcard"><small>How we support you</small><ul>${j.sup.map(x=>`<li>💗 ${x}</li>`).join('')}</ul></div><div class="jcard"><small>💡 Good to know</small><h4 style="font-size:26px">${j.note}</h4></div>`}
+ panel.innerHTML=`<div class="jcard big"><small>${j.t}</small><h4>${j.h}</h4><p>${j.p}</p></div>`}
 stops.forEach(b=>b.onclick=()=>setJ(+b.dataset.s));setJ(0);
 
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});
